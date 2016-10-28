@@ -1,0 +1,2 @@
+# InventoryMNG
+proyecto para DM
