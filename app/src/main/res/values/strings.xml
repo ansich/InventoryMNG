@@ -3,4 +3,5 @@
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Enviar</string>
+    <string name="registro">Registrarse</string>
 </resources>
