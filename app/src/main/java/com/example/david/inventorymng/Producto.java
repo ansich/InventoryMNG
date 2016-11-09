@@ -1,4 +1,4 @@
-package com.example.david.myapplication;
+package com.example.david.inventorymng;
 
 /**
  * Created by david on 28/10/2016.
@@ -45,7 +45,7 @@ public class Producto {
         return cod;
     }
 
-    public void setCod(inc c){
+    public void setCod(int c){
         this.cod = c;
     }
 
