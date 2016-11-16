@@ -29,8 +29,7 @@ public class SqlIO extends SQLiteOpenHelper {
                     + "desc string(255) NOT NULL"
                     + "proveedor string NOT NULL"
                     + "fechaEntrada date NOT NULL "
-                    + "fechaSalida date NOT NULL "
-                    + "fechaCaducidad date NOT NULL)");
+                    + "fechaSalida date NOT NULL)");
             db.setTransactionSuccessful();
         }
         finally {

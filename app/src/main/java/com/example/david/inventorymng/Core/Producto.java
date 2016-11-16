@@ -27,19 +27,18 @@ public class Producto {
         prov = "";
         fechaEnt = 0;
         fechaSal = 0;
-        fechaCad = 0;
 
     }
 
-    public Producto(String nom, int co, String des, String prv, int fEnt, int fSal, int fCad ){
+    public Producto(String nom, int co, int n, String des, String prv, int fEnt, int fSal ){
 
         nombre = nom;
         cod = co;
+        num = n;
         desc = des;
         prov = prv;
         fechaEnt = fEnt;
         fechaSal = fSal;
-        fechaCad = fCad;
 
     }
 
@@ -73,14 +72,6 @@ public class Producto {
 
     public void setFechaSal(int f){
         this.fechaSal = f;
-    }
-
-    public int getFechaCad(){
-        return fechaCad;
-    }
-
-    public void setFechaCad(int f){
-        this.fechaCad = f;
     }
 
     public String getNombre(){
