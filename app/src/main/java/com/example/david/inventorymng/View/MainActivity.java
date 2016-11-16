@@ -1,4 +1,4 @@
-package com.example.david.inventorymng;
+package com.example.david.inventorymng.View;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;

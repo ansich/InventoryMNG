@@ -1,4 +1,4 @@
-package com.example.david.inventorymng;
+package com.example.david.inventorymng.Core;
 
 /**
  * Created by david on 28/10/2016.
@@ -11,6 +11,7 @@ public class Producto {
     //atributos:
     private String nombre;
     private int cod;
+    private int num;
     private String desc;
     private String prov;
     private int fechaEnt;
@@ -21,6 +22,7 @@ public class Producto {
 
         nombre = "";
         cod = 0;
+        num = 0;
         desc = "";
         prov = "";
         fechaEnt = 0;
@@ -39,6 +41,14 @@ public class Producto {
         fechaSal = fSal;
         fechaCad = fCad;
 
+    }
+
+    public int getNum() {
+        return num;
+    }
+
+    public void setNum(int num) {
+        this.num = num;
     }
 
     public int getCod(){
@@ -95,6 +105,20 @@ public class Producto {
 
     public void setProv(String p){
         this.prov = p;
+    }
+
+    @Override
+    public String toString() {
+        return "Producto{" +
+                "nombre='" + nombre + '\'' +
+                ", cod=" + cod +
+                ", num=" + num +
+                ", desc='" + desc + '\'' +
+                ", prov='" + prov + '\'' +
+                ", fechaEnt=" + fechaEnt +
+                ", fechaSal=" + fechaSal +
+                ", fechaCad=" + fechaCad +
+                '}';
     }
 
 }
