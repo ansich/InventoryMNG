@@ -83,6 +83,7 @@ public class InventoryMNG4App extends Application {
         // Actualizar lista
         this.leerBD();
         Producto p = this.items.get(pos);
+        int c = p.getCod();
 
         // Modificar lista
         Producto prod = new Producto( p.getNombre(), p.getCod(), num, des, prv, p.getFechaEnt(), p.getFechaSal() );
@@ -92,11 +93,7 @@ public class InventoryMNG4App extends Application {
         SQLiteDatabase db = this.getDB();
         try {
             db.beginTransaction();
-            db.execSQL( "DELETE FROM compra" );
-            for(Producto it: this.items) {
-                db.execSQL( "INSERT INTO producto(des, num, prv) where clave =  VALUES(?, ?, ?)",
-                        new String[]{ it.getNombre(), Integer.toString( it.getNum() ) } );
-            }
+            db.execSQL( "UPDATE producto SET des = ?, num = ? , prv = ? WHERE cod = c" );
             db.setTransactionSuccessful();
         }
         finally {
@@ -106,15 +103,16 @@ public class InventoryMNG4App extends Application {
         return;
     }
 
-    public void removeItem(int c){
+    public void removeItem(int pos){
 
         //guardar la lista sin el. borrado
         SQLiteDatabase db = this.getDB();
+        Producto p = this.items.get(pos);
+        int c = p.getCod();
 
         try {
             db.beginTransaction();
             db.execSQL( "DELETE FROM compra WHERE cod = c " );
-
             db.setTransactionSuccessful();
         }
         finally {
