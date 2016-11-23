@@ -6,11 +6,13 @@
     <string name="registro">Registrarse</string>
     <string name="nombre">Nombre</string>
     <string name="codigo">Codigo</string>
+    <string name="numero">Numero</string>
     <string name="desc">Descripcion</string>
     <string name="prov">Proveedor</string>
     <string name="add_date">Fecha de entrada</string>
     <string name="cad_date">Fecha de caducidad</string>
     <string name="crear">crear</string>
+    <string name="cancelar">cancelar</string>
     <string name="añadirproducto">Añadir nuevo producto</string>
     <string name="eliminarproducto">Eliminar producto</string>
     <string name="modificarproducto">Modificar producto</string>

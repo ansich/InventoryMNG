@@ -1,5 +1,7 @@
 package com.example.david.inventorymng.Core;
 
+import java.util.Date;
+
 /**
  * Created by david on 28/10/2016.
  * Atributos de los productos:
@@ -14,9 +16,8 @@ public class Producto {
     private int num;
     private String desc;
     private String prov;
-    private int fechaEnt;
-    private int fechaSal;
-    private int fechaCad;
+    private Date fechaEnt;
+    private Date fechaCad;
 
     public Producto(){
 
@@ -25,12 +26,12 @@ public class Producto {
         num = 0;
         desc = "";
         prov = "";
-        fechaEnt = 0;
-        fechaSal = 0;
+        fechaEnt = null;
+        fechaCad = null;
 
     }
 
-    public Producto(String nom, int co, int n, String des, String prv, int fEnt, int fSal ){
+    public Producto(String nom, int co, int n, String des, String prv, Date fEnt, Date fCad ){
 
         nombre = nom;
         cod = co;
@@ -38,7 +39,7 @@ public class Producto {
         desc = des;
         prov = prv;
         fechaEnt = fEnt;
-        fechaSal = fSal;
+        fechaCad = fCad;
 
     }
 
@@ -58,20 +59,20 @@ public class Producto {
         this.cod = c;
     }
 
-    public int getFechaEnt(){
+    public Date getFechaCad() {
+        return fechaCad;
+    }
+
+    public void setFechaCad(Date fechaCad) {
+        this.fechaCad = fechaCad;
+    }
+
+    public Date getFechaEnt() {
         return fechaEnt;
     }
 
-    public void setFechaEnt(int f){
-        this.fechaEnt = f;
-    }
-
-    public int getFechaSal(){
-        return fechaSal;
-    }
-
-    public void setFechaSal(int f){
-        this.fechaSal = f;
+    public void setFechaEnt(Date fechaEnt) {
+        this.fechaEnt = fechaEnt;
     }
 
     public String getNombre(){
@@ -107,9 +108,7 @@ public class Producto {
                 ", desc='" + desc + '\'' +
                 ", prov='" + prov + '\'' +
                 ", fechaEnt=" + fechaEnt +
-                ", fechaSal=" + fechaSal +
                 ", fechaCad=" + fechaCad +
                 '}';
     }
-
 }

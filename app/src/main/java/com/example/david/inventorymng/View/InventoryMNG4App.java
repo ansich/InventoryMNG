@@ -8,6 +8,7 @@ import com.example.david.inventorymng.Core.Producto;
 import com.example.david.inventorymng.Core.SqlIO;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -46,7 +47,7 @@ public class InventoryMNG4App extends Application {
         if ( cursor.moveToFirst() ) {
             do {
                 Producto prod = new Producto( cursor.getString( 0 ), cursor.getInt( 1 ), cursor.getInt( 2 ), cursor.getString( 3 ),
-                        cursor.getString( 4 ),cursor.getInt( 5 ), cursor.getInt( 6 ) );
+                        cursor.getString( 4 ),cursor.getString( 5 ), cursor.getInt( 6 ) );
                 this.items.add( prod );
             } while( cursor.moveToNext() );
 
@@ -56,7 +57,7 @@ public class InventoryMNG4App extends Application {
         return;
     }
 
-    public void addProducto(String nom, int co, int num, String des, String prv, int fEnt, int fSal )
+    public void addProducto(String nom, int co, int num, String des, String prv, Date fEnt, Date fSal )
     {
         SQLiteDatabase db = this.getDB();
 
@@ -120,30 +121,4 @@ public class InventoryMNG4App extends Application {
         }
     }
 
-    /*public void removeItem(int i){
-
-        //elimina de la lista
-        this.items.remove( i );
-
-        //guardar la lista sin el. borrado
-        SQLiteDatabase db = this.getDB();
-
-        try {
-            db.beginTransaction();
-
-            //borrar todos los registros
-            db.execSQL( "DELETE FROM compra" );
-
-            //guardar la lista act.
-            for(Item it: this.items) {
-                db.execSQL( "INSERT INTO compra(nombre, num) VALUES(?, ?)",
-                        new String[]{ it.getNombre(), Integer.toString( it.getNum() ) } );
-            }
-
-            db.setTransactionSuccessful();
-        }
-        finally {
-            db.endTransaction();
-        }
-    }*/
 }
