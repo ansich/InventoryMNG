@@ -87,7 +87,7 @@ public class InventoryMNG4App extends Application {
         int c = p.getCod();
 
         // Modificar lista
-        Producto prod = new Producto( p.getNombre(), p.getCod(), num, des, prv, p.getFechaEnt(), p.getFechaSal() );
+        Producto prod = new Producto( p.getNombre(), p.getCod(), num, des, prv, p.getFechaEnt(), p.getFechaCad() );
         this.items.set( pos, prod );
 
         // Actualizar base de datos
