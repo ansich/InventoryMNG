@@ -200,4 +200,65 @@ public class MainActivity extends AppCompatActivity {
 
         return toret;
     }
+
+
+
+    /*
+//La app pasa a segundo plano, y quizás sea elminada
+public void onPause() {
+
+
+   super.onPause();
+
+
+   SharedPreferences prefs = this.getPreferences(Context.MODE_PRIVATE);
+   SharedPreferences.Editor saver = prefs.edit();
+
+
+   saver.putStringSet("items", new HashSet<String>(this.items));
+
+
+   StringBuilder builder = new StringBuilder();
+   for (String item : this.items) {
+       builder.append(item);
+       builder.append(',');
+   }
+
+
+   saver.putString("items", builder.toString());
+
+
+   saver.apply();
+}
+*/
+
+
+/*
+//La app vuelve a estar en ejecución
+public void onResume(){
+   super.onResume();
+
+
+   SharedPreferences prefs = this.getPreferences(Context.MODE_PRIVATE);
+   Set<String> itemsnuevo = prefs.getStringSet("items", new HashSet<String>(this.items));
+   this.items.clear();
+   this.items.addAll(itemsnuevo);
+   this.itemsAdapter.notifyDataSetChanged();
+
+
+   String codedItems = prefs.getString("items", "");
+   String [] items = codedItems.split(" , ");
+
+
+   this.items.clear();
+   for(int i = 0; i < (items.length - 1); ++i){
+       this.items.add(items[i]);
+   }
+
+
+   this.itemsAdapter.notifyDataSetChanged();
+
+
+}
+*/
 }
