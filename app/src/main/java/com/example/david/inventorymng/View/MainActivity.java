@@ -39,15 +39,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         this.app = (InventoryMNG4App) this.getApplication();
 
-
         ListView lista = (ListView) this.findViewById( R.id.lvToDoList );
-
-
         this.registerForContextMenu( lista );
-
 
         // Lista
         this.adaptadorProducto = new ArrayAdapter<>(
@@ -81,17 +76,17 @@ public class MainActivity extends AppCompatActivity {
                         public void onClick(DialogInterface dialog, int which) {
 
                             final AlertDialog.Builder alerta2 = new AlertDialog.Builder(MainActivity.this);
-                            final EditText edDesc = new EditText(MainActivity.this.getApplicationContext());
                             final EditText edProv = new EditText(MainActivity.this.getApplicationContext());
                             final EditText edNum = new EditText(MainActivity.this.getApplicationContext());
+                            final EditText edDesc = new EditText(MainActivity.this.getApplicationContext());
 
                             alerta2.setTitle("Modifcar elemento de la lista");
+                            alerta2.setMessage("Número");
+                            alerta2.setView(edNum);
                             alerta2.setMessage("Descripcion");
                             alerta2.setView(edDesc);
                             alerta2.setMessage("Proveedor");
                             alerta2.setView(edProv);
-                            alerta2.setMessage("Número");
-                            alerta2.setView(edNum);
                             alerta2.setPositiveButton("Modificar", new DialogInterface.OnClickListener() {
 
 
@@ -134,7 +129,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-
     //MULTIACTIVIDADES
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
@@ -167,40 +161,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
-//    @Override
-//    public boolean onContextItemSelected(MenuItem menuItem)
-//    {
-//        boolean toret = false;
-//
-//
-//        switch( menuItem.getItemId() ) {
-//            case R.id.item_eliminarproducto:
-//                int pos = ( (AdapterView.AdapterContextMenuInfo)menuItem.getMenuInfo() ).position;
-//                this.app.removeItem(pos);
-//                toret = true;
-//                break;
-//            case R.id.item_modificarproducto:
-//                int pos2 = ( (AdapterView.AdapterContextMenuInfo)menuItem.getMenuInfo() ).position;
-//                this.app.modifyProducto(pos2,);
-//                toret = true;
-//                break;
-//        }
-//
-//
-//        return toret;
-//    }
-
-
-
-
     //MENU DE OPCIONES
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
-
         super.onCreateOptionsMenu( menu );
-
 
         this.getMenuInflater().inflate( R.menu.menu_main, menu );
         return true;
@@ -209,7 +174,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
 
         boolean toret = false;
 
@@ -220,7 +184,8 @@ public class MainActivity extends AppCompatActivity {
                 toret = true;
                 break;
             case R.id.item_añadirproducto:
-                //this.crear
+                Intent i = new Intent(this, CreateProduct.class );
+                startActivity(i);
                 toret = true;
                 break;
             case R.id.item_estadisticas:
@@ -232,7 +197,6 @@ public class MainActivity extends AppCompatActivity {
                 toret = true;
                 break;
         }
-
 
         return toret;
     }

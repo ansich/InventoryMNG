@@ -16,8 +16,8 @@ public class Producto {
     private int num;
     private String desc;
     private String prov;
-    private Date fechaEnt;
-    private Date fechaCad;
+    private String fechaEnt;
+    private String fechaCad;
 
     public Producto(){
 
@@ -31,7 +31,7 @@ public class Producto {
 
     }
 
-    public Producto(String nom, int co, int n, String des, String prv, Date fEnt, Date fCad ){
+    public Producto(String nom, int co, int n, String des, String prv, String fEnt, String fCad ){
 
         nombre = nom;
         cod = co;
@@ -59,22 +59,6 @@ public class Producto {
         this.cod = c;
     }
 
-    public Date getFechaCad() {
-        return fechaCad;
-    }
-
-    public void setFechaCad(Date fechaCad) {
-        this.fechaCad = fechaCad;
-    }
-
-    public Date getFechaEnt() {
-        return fechaEnt;
-    }
-
-    public void setFechaEnt(Date fechaEnt) {
-        this.fechaEnt = fechaEnt;
-    }
-
     public String getNombre(){
         return nombre;
     }
@@ -99,16 +83,32 @@ public class Producto {
         this.prov = p;
     }
 
+    public String getFechaEnt() {
+        return fechaEnt;
+    }
+
+    public void setFechaEnt(String fechaEnt) {
+        this.fechaEnt = fechaEnt;
+    }
+
+    public String getFechaCad() {
+        return fechaCad;
+    }
+
+    public void setFechaCad(String fechaCad) {
+        this.fechaCad = fechaCad;
+    }
+
     @Override
     public String toString() {
         return "Producto{" +
-                "nombre='" + nombre + '\'' +
+                "nombreee='" + nombre + '\'' +
                 ", cod=" + cod +
                 ", num=" + num +
                 ", desc='" + desc + '\'' +
                 ", prov='" + prov + '\'' +
-                ", fechaEnt=" + fechaEnt +
-                ", fechaCad=" + fechaCad +
+                ", fechaEnt='" + fechaEnt + '\'' +
+                ", fechaCad='" + fechaCad + '\'' +
                 '}';
     }
 }

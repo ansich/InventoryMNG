@@ -1,6 +1,5 @@
 package com.example.david.inventorymng.View;
 
-
 import android.app.Application;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -13,16 +12,10 @@ import java.util.Date;
 import java.util.List;
 
 
-/**
- * Created by David on 16/11/2016.
- */
-
-
 public class InventoryMNG4App extends Application {
     private SqlIO db;
     private List<Producto> items;
     private CreateProduct crear;
-
 
     @Override
     public void onCreate()
@@ -31,12 +24,10 @@ public class InventoryMNG4App extends Application {
         this.db = new SqlIO( this );
     }
 
-
     public SQLiteDatabase getDB()
     {
         return this.db.getWritableDatabase();
     } //Forma mas gen. de ref bd
-
 
     public List<Producto> getItemList()
     {
@@ -44,32 +35,17 @@ public class InventoryMNG4App extends Application {
         return this.items;
     }
 
-
     private void leerBD()
     {
         SQLiteDatabase db = this.db.getReadableDatabase();
         this.items.clear();
 
-
         Cursor cursor = db.rawQuery( "SELECT * FROM producto", null );
-
-
-        //Fecha de entrada
-        String s = cursor.getString(5);
-        Date fechaEntrada = parseFecha(s);
-
-
-        //Fecha de caducidad
-        String d = cursor.getString(6);
-        Date fechaCaducidad = parseFecha(d);
-
-
-
 
         if ( cursor.moveToFirst() ) {
             do {
                 Producto prod = new Producto( cursor.getString( 0 ), cursor.getInt( 1 ), cursor.getInt( 2 ), cursor.getString( 3 ),
-                        cursor.getString( 4 ),fechaEntrada ,fechaCaducidad );
+                        cursor.getString( 4 ),cursor.getString(5) ,cursor.getString(6) );
                 this.items.add( prod );
             } while( cursor.moveToNext() );
 
@@ -77,12 +53,11 @@ public class InventoryMNG4App extends Application {
             cursor.close();
         }
 
-
         return;
     }
 
 
-    public void addProducto(String nom, int co, int num, String des, String prv, Date fEnt, Date fSal )
+    public void addProducto(String nom, int co, int num, String des, String prv, String fEnt, String fSal )
     {
         SQLiteDatabase db = this.getDB();
 
@@ -90,8 +65,8 @@ public class InventoryMNG4App extends Application {
         try {
             db.beginTransaction();
             // Actualizar la base de datos
-            db.execSQL( "INSERT INTO producto(nom, co, num, des, prv, fEnt, fSal) VALUES (?, ?, ?, ?, ?, ?, ?)",
-                    new String[]{ nom, Integer.toString( co ), Integer.toString( num ), des, prv, fEnt.toString(), fSal.toString() } );
+            db.execSQL( "INSERT INTO producto(nombre, cod, num, desc, proveedor, fechaEntrada, fechaCad) VALUES (?, ?, ?, ?, ?, ?, ?)",
+                    new String[]{ nom, Integer.toString( co ), Integer.toString( num ), des, prv, fEnt, fSal } );
 
 
             // Actualizar la lista
@@ -102,7 +77,6 @@ public class InventoryMNG4App extends Application {
         finally {
             db.endTransaction();
         }
-
 
         return;
     }
@@ -148,7 +122,7 @@ public class InventoryMNG4App extends Application {
 
         try {
             db.beginTransaction();
-            db.execSQL( "DELETE FROM compra WHERE cod = c " );
+            db.execSQL( "DELETE FROM Inventario WHERE cod = c " );
             db.setTransactionSuccessful();
         }
         finally {
@@ -158,7 +132,7 @@ public class InventoryMNG4App extends Application {
 
 
     /**
-     * Permite convertir un String en fecha (Date).
+     * Permite convertir un String en fecha (Date)..
      * @param fecha Cadena de fecha dd/MM/yyyy
      * @return Objeto Date
      */

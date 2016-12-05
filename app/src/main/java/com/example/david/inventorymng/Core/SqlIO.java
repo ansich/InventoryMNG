@@ -24,12 +24,13 @@ public class SqlIO extends SQLiteOpenHelper {
         try {
             db.beginTransaction();
             db.execSQL( "CREATE TABLE IF NOT EXISTS producto( "
-                    + "nombre string(50) UNIQUE"
-                    + "cod int PRIMARY KEY"
-                    + "desc string(255) NOT NULL"
-                    + "proveedor string NOT NULL"
-                    + "fechaEntrada date NOT NULL "
-                    + "fechaSalida date NOT NULL)");
+                    + "nombre string(50) UNIQUE, "
+                    + "cod int PRIMARY KEY, "
+                    + "num int NOT NULL, "
+                    + "desc string(255) NOT NULL, "
+                    + "proveedor string NOT NULL, "
+                    + "fechaEntrada string NOT NULL, "
+                    + "fechaCad string NOT NULL)");
             db.setTransactionSuccessful();
         }
         finally {

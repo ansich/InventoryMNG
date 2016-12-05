@@ -14,6 +14,7 @@
     <string name="crear">crear</string>
     <string name="cancelar">cancelar</string>
     <string name="añadirproducto">Añadir nuevo producto</string>
+    <string name="introducirProducto">Introduzca los datos del producto</string>
     <string name="eliminarproducto">Eliminar producto</string>
     <string name="modificarproducto">Modificar producto</string>
     <string name="ajustes">Ajustes</string>

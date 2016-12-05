@@ -30,8 +30,8 @@ public class CreateProduct extends AppCompatActivity {
         final EditText edNum = (EditText) this.findViewById( R.id.edNum );
         final EditText edDesc = (EditText) this.findViewById( R.id.edDesc );
         final EditText edProv = (EditText) this.findViewById( R.id.edProv );
-        final EditText edAdd_date = (EditText) this.findViewById( R.id.edAdd_date );
-        final EditText edCad_date = (EditText) this.findViewById( R.id.edCad_date );
+        final EditText edAdd_date = (EditText) this.findViewById( R.id.edAdd_Date );
+        final EditText edCad_date = (EditText) this.findViewById( R.id.edCad_Date );
 
 
         final Button btGuardar = (Button) this.findViewById( R.id.idBtnCrear );
@@ -43,11 +43,8 @@ public class CreateProduct extends AppCompatActivity {
 
         //Intent datosEnviados = this.getIntent();
         //final int pos = datosEnviados.getExtras().getInt( "pos" );
-        String nombre = "", desc="", prov="";
+        String nombre = "", desc="", prov="", ad="", cd="";
         int cod=1, np = 1;
-        Date ad = new Date();
-        Date cd = new Date();
-
 
 //        if ( pos >= 0 ) {
 //            nombre = app.getItemList().get( pos ).getNombre();
@@ -62,8 +59,8 @@ public class CreateProduct extends AppCompatActivity {
         edCod.setText( Integer.toString(cod) );
         edDesc.setText( desc );
         edProv.setText( prov );
-        edAdd_date.setText( ad.toString() );
-        edCad_date.setText( cd.toString() );
+        edAdd_date.setText( ad );
+        edCad_date.setText( cd );
 
 
 
@@ -85,8 +82,8 @@ public class CreateProduct extends AppCompatActivity {
                 final int num = Integer.parseInt(edNum.getText().toString());
                 final String desc = edDesc.getText().toString();
                 final String prov = edProv.getText().toString();
-                final Date ad = parseFecha(edAdd_date.getText().toString());
-                final Date cd = parseFecha(edCad_date.getText().toString());
+                final String ad = edAdd_date.getText().toString();
+                final String cd = edCad_date.getText().toString();
 
 
                 app.addProducto(nombre, cod, num, desc, prov, ad, cd);
@@ -216,17 +213,7 @@ public class CreateProduct extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                Date a = null;
-
-
-                try {
-                    a = parseFecha( edAdd_date.getText().toString() );
-                } catch(Exception exc) {
-                    Log.w( "CreateProduct", "edAdd_date no puede ser convertido a fecha" );
-                }
-
-
-                btGuardar.setEnabled( a != null );
+                btGuardar.setEnabled( edAdd_date.getText().toString().trim().length() > 0 );
             }
         });
 
@@ -244,17 +231,7 @@ public class CreateProduct extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                Date a = null;
-
-
-                try {
-                    a = parseFecha( edCad_date.getText().toString() );
-                } catch(Exception exc) {
-                    Log.w( "CreateProduct", "edAdd_date no puede ser convertido a fecha" );
-                }
-
-
-                btGuardar.setEnabled( a != null );
+                btGuardar.setEnabled( edCad_date.getText().toString().trim().length() > 0 );
             }
         });
     }
