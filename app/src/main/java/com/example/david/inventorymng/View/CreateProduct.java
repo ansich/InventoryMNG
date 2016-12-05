@@ -1,5 +1,6 @@
 package com.example.david.inventorymng.View;
 
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,21 +13,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
-
 import com.example.david.inventorymng.R;
-
 import java.util.Date;
 
-/**
- * Created by David on 22/11/2016.
- */
-
 public class CreateProduct extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView( R.layout.add_producto );
+
 
         final EditText edNom = (EditText) this.findViewById( R.id.edNom );
         final EditText edCod = (EditText) this.findViewById( R.id.edCod );
@@ -35,16 +32,22 @@ public class CreateProduct extends AppCompatActivity {
         final EditText edProv = (EditText) this.findViewById( R.id.edProv );
         final EditText edAdd_date = (EditText) this.findViewById( R.id.edAdd_date );
         final EditText edCad_date = (EditText) this.findViewById( R.id.edCad_date );
+
+
         final Button btGuardar = (Button) this.findViewById( R.id.idBtnCrear );
         final Button btCancelar = (Button) this.findViewById( R.id.idBtnCancelar );
+
+
         final InventoryMNG4App app = (InventoryMNG4App) this.getApplication();
 
-        Intent datosEnviados = this.getIntent();
-        final int pos = datosEnviados.getExtras().getInt( "pos" );
+
+        //Intent datosEnviados = this.getIntent();
+        //final int pos = datosEnviados.getExtras().getInt( "pos" );
         String nombre = "", desc="", prov="";
         int cod=1, np = 1;
         Date ad = new Date();
         Date cd = new Date();
+
 
 //        if ( pos >= 0 ) {
 //            nombre = app.getItemList().get( pos ).getNombre();
@@ -54,12 +57,15 @@ public class CreateProduct extends AppCompatActivity {
 //            cantidad = app.getItemList().get( pos ).getNum();
 //        }
 
+
         edNom.setText( nombre );
         edCod.setText( Integer.toString(cod) );
         edDesc.setText( desc );
         edProv.setText( prov );
         edAdd_date.setText( ad.toString() );
         edCad_date.setText( cd.toString() );
+
+
 
 
         btCancelar.setOnClickListener(new View.OnClickListener() {
@@ -69,6 +75,7 @@ public class CreateProduct extends AppCompatActivity {
                 CreateProduct.this.finish();
             }
         });
+
 
         btGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,28 +94,144 @@ public class CreateProduct extends AppCompatActivity {
 
                 CreateProduct.this.setResult( Activity.RESULT_OK );
                 CreateProduct.this.finish();
+
+
             }
         });
         btGuardar.setEnabled( false );
 
-        edNombre.addTextChangedListener(new TextWatcher() {
+
+        edNom.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
+
             }
+
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
+
             }
+
 
             @Override
             public void afterTextChanged(Editable editable) {
-                btGuardar.setEnabled( edNombre.getText().toString().trim().length() > 0 );
+                btGuardar.setEnabled( edNom.getText().toString().trim().length() > 0 );
             }
         });
 
-        edCantidad.addTextChangedListener(new TextWatcher() {
+
+        edCod.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+
+            }
+
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+
+            }
+
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                int cod = 0;
+
+
+                try {
+                    cod = Integer.parseInt( edCod.getText().toString() );
+                } catch(NumberFormatException exc) {
+                    Log.w( "CreateProduct", "edCod no puede ser convertido a número" );
+                }
+
+
+                btGuardar.setEnabled( cod > 0 );
+            }
+        });
+
+
+        edDesc.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+
+            }
+
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+
+            }
+
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                btGuardar.setEnabled( edDesc.getText().toString().trim().length() > 0 );
+            }
+        });
+
+
+        edProv.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+
+            }
+
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+
+            }
+
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                btGuardar.setEnabled( edProv.getText().toString().trim().length() > 0 );
+            }
+        });
+
+
+        edAdd_date.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+
+            }
+
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+
+            }
+
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                Date a = null;
+
+
+                try {
+                    a = parseFecha( edAdd_date.getText().toString() );
+                } catch(Exception exc) {
+                    Log.w( "CreateProduct", "edAdd_date no puede ser convertido a fecha" );
+                }
+
+
+                btGuardar.setEnabled( a != null );
+            }
+        });
+
+
+        edCad_date.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -121,18 +244,21 @@ public class CreateProduct extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                int cantidad = 0;
+                Date a = null;
+
 
                 try {
-                    cantidad = Integer.parseInt( edCantidad.getText().toString() );
-                } catch(NumberFormatException exc) {
-                    Log.w( "ItemEditionActivity", "edCantidad no puede ser convertido a número" );
+                    a = parseFecha( edCad_date.getText().toString() );
+                } catch(Exception exc) {
+                    Log.w( "CreateProduct", "edAdd_date no puede ser convertido a fecha" );
                 }
 
-                btGuardar.setEnabled( cantidad > 0 );
+
+                btGuardar.setEnabled( a != null );
             }
         });
     }
+
 
     /**
      * Permite convertir un String en fecha (Date).
@@ -152,6 +278,5 @@ public class CreateProduct extends AppCompatActivity {
         }
         return fechaDate;
     }
-
 
 }
