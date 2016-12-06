@@ -160,7 +160,6 @@ public class MainActivity extends AppCompatActivity {
             this.adaptadorProducto.notifyDataSetChanged();
         }
 
-
         return;
     }
 
@@ -213,8 +212,9 @@ public class MainActivity extends AppCompatActivity {
                 toret = true;
                 break;
             case R.id.item_añadirproducto:
-                Intent i = new Intent(this, CreateProduct.class );
-                startActivity(i);
+                Intent subActividad = new Intent( MainActivity.this, CreateProduct.class );
+                subActividad.putExtra( "pos", -1 );
+                MainActivity.this.startActivityForResult( subActividad, CODIGO_AÑADIR_PRODUCTO );
                 toret = true;
                 break;
             case R.id.item_estadisticas:

@@ -107,16 +107,12 @@ public class CreateProduct extends AppCompatActivity {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-
             }
-
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-
             }
-
 
             @Override
             public void afterTextChanged(Editable editable) {
@@ -228,13 +224,10 @@ public class CreateProduct extends AppCompatActivity {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-
             }
-
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
 
             }
 
@@ -260,8 +253,11 @@ public class CreateProduct extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable editable) {
                 btGuardar.setEnabled( edCad_date.getText().toString().trim().length() > 0 );
+
             }
+            
         });
+
     }
 
 
@@ -285,3 +281,4 @@ public class CreateProduct extends AppCompatActivity {
     }
 
 }
+
