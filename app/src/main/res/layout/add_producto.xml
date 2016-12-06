@@ -5,17 +5,6 @@
     android:layout_height="match_parent">
 
 
-    <TextView
-        android:text="@string/introducirProducto"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView8"
-        android:layout_weight="0"
-        android:textAppearance="@style/TextAppearance.AppCompat.Title"
-        android:textAlignment="center"
-        android:background="?attr/colorControlHighlight" />
-
-
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -207,6 +196,13 @@
 
 
         <Button
+            android:text="@string/cancelar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/idBtnCancelar"
+            android:layout_weight="1" />
+
+        <Button
             android:text="@string/crear"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -217,11 +213,5 @@
             android:autoText="false" />
 
 
-        <Button
-            android:text="@string/cancelar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/idBtnCancelar"
-            android:layout_weight="1" />
     </LinearLayout>
 </LinearLayout>

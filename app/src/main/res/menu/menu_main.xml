@@ -1,11 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.david.inventorymng.MainActivity">
-    <item android:id="@+id/item_barrabusqueda"
+xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/item_barrabusqueda"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        app:showAsAction="always|collapseActionView"
         android:icon="@android:drawable/ic_menu_search"
-        android:title="@string/buscar"
-        android:showAsAction="ifRoom"/>
+        android:title="Search" />
     <item android:title="@string/añadirproducto"
         android:id="@+id/item_añadirproducto" />
     <item android:title="@string/estadisticas"

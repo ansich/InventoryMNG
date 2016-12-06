@@ -40,29 +40,32 @@ public class CreateProduct extends AppCompatActivity {
 
         final InventoryMNG4App app = (InventoryMNG4App) this.getApplication();
 
+        //Transferir datos de una actividad a otra
+        Intent datosEnviados = this.getIntent();
+        final int pos = datosEnviados.getExtras().getInt( "pos" );
 
-        //Intent datosEnviados = this.getIntent();
-        //final int pos = datosEnviados.getExtras().getInt( "pos" );
         String nombre = "", desc="", prov="", ad="", cd="";
-        int cod=1, np = 1;
+        int cod = 1, numero = 0;
 
-//        if ( pos >= 0 ) {
-//            nombre = app.getItemList().get( pos ).getNombre();
-//            desc = app.getItemList().get( pos ).getDesc();
-//            prov = app.getItemList().get( pos ).getProv();
-//            ad = app.getItemList().get( pos ).getProv();
-//            cantidad = app.getItemList().get( pos ).getNum();
-//        }
+
+        if ( pos >= 0 ) {
+            nombre = app.getItemList().get( pos ).getNombre();
+            numero = app.getItemList().get( pos ).getNum();
+            cod = app.getItemList().get( pos ).getCod();
+            desc = app.getItemList().get( pos ).getDesc();
+            prov = app.getItemList().get( pos ).getProv();
+            ad = app.getItemList().get( pos ).getFechaEnt();
+            cd = app.getItemList().get( pos ).getFechaCad();
+        }
 
 
         edNom.setText( nombre );
         edCod.setText( Integer.toString(cod) );
+        edNum.setText( Integer.toString(numero) );
         edDesc.setText( desc );
         edProv.setText( prov );
         edAdd_date.setText( ad );
         edCad_date.setText( cd );
-
-
 
 
         btCancelar.setOnClickListener(new View.OnClickListener() {
@@ -85,9 +88,11 @@ public class CreateProduct extends AppCompatActivity {
                 final String ad = edAdd_date.getText().toString();
                 final String cd = edCad_date.getText().toString();
 
-
-                app.addProducto(nombre, cod, num, desc, prov, ad, cd);
-
+                if ( pos >= 0 ) {
+                    app.modifyProducto(pos,desc,num,prov);
+                } else {
+                    app.addProducto(nombre, cod, num, desc, prov, ad, cd);
+                }
 
                 CreateProduct.this.setResult( Activity.RESULT_OK );
                 CreateProduct.this.finish();
@@ -119,6 +124,31 @@ public class CreateProduct extends AppCompatActivity {
             }
         });
 
+        edNum.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                int num = 0;
+
+                try {
+                    num = Integer.parseInt( edCod.getText().toString() );
+                } catch(NumberFormatException exc) {
+                    Log.w( "CreateProduct", "edNum no puede ser convertido a número" );
+                }
+
+                btGuardar.setEnabled( num > 0 );
+            }
+        });
+
 
         edCod.addTextChangedListener(new TextWatcher() {
             @Override
@@ -139,13 +169,11 @@ public class CreateProduct extends AppCompatActivity {
             public void afterTextChanged(Editable editable) {
                 int cod = 0;
 
-
                 try {
                     cod = Integer.parseInt( edCod.getText().toString() );
                 } catch(NumberFormatException exc) {
                     Log.w( "CreateProduct", "edCod no puede ser convertido a número" );
                 }
-
 
                 btGuardar.setEnabled( cod > 0 );
             }

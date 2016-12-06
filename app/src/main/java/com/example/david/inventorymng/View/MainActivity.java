@@ -5,9 +5,14 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.WindowDecorActionBar;
+import android.support.v7.widget.SearchView;
 import android.view.ContextMenu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -41,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
         this.app = (InventoryMNG4App) this.getApplication();
 
-        ListView lista = (ListView) this.findViewById( R.id.lvToDoList );
+        final ListView lista = (ListView) this.findViewById( R.id.lvToDoList );
         this.registerForContextMenu( lista );
 
         // Lista
@@ -50,6 +55,17 @@ public class MainActivity extends AppCompatActivity {
                 android.R.layout.simple_selectable_list_item,
                 app.getItemList() );
         lista.setAdapter( this.adaptadorProducto );
+
+        lista.setOnItemClickListener( new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //Object listItem = lista.getItemAtPosition(position);
+                Intent subActividad = new Intent( MainActivity.this, CreateProduct.class );
+
+                subActividad.putExtra( "pos", 0 );
+                MainActivity.this.startActivityForResult( subActividad, CODIGO_EDITAR_PRODUCTO );
+            }
+        });
 
         lista.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -124,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.this.startActivityForResult( subActividad, CODIGO_AÑADIR_PRODUCTO );
 
 
-                //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                //Snackbar.make(view, "Nuevo producto", Snackbar.LENGTH_SHORT).setAction("Action", null).show();
             }
         });
     }
@@ -161,14 +177,27 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    //MENU DE OPCIONES
+    //MENU DE OPCIONES CON BUSQUEDA
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
-        super.onCreateOptionsMenu( menu );
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        MenuItem searchViewItem = menu.findItem(R.id.item_barrabusqueda);
+        final SearchView searchViewAndroidActionBar = (SearchView) MenuItemCompat.getActionView(searchViewItem);
+        searchViewAndroidActionBar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                searchViewAndroidActionBar.clearFocus();
+                return true;
+            }
 
-        this.getMenuInflater().inflate( R.menu.menu_main, menu );
-        return true;
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+        return super.onCreateOptionsMenu(menu);
     }
 
 

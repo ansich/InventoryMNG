@@ -101,14 +101,12 @@ public class Producto {
 
     @Override
     public String toString() {
-        return "Producto{" +
-                "nombreee='" + nombre + '\'' +
-                ", cod=" + cod +
-                ", num=" + num +
-                ", desc='" + desc + '\'' +
-                ", prov='" + prov + '\'' +
-                ", fechaEnt='" + fechaEnt + '\'' +
-                ", fechaCad='" + fechaCad + '\'' +
-                '}';
+        return  "Nombre = " + nombre +
+                "\nCódigo = " + cod +
+                "\nCantidad = " + num;
+                //"Descripción = '" + desc +
+                //"Proveedor = " + prov +
+                //"Fecha de entrada = " + fechaEnt +
+                //"Fecha de caducidad = " + fechaCad;
     }
 }
