@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.view.MenuItemCompat;
@@ -47,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         this.app = (InventoryMNG4App) this.getApplication();
 
         final ListView lista = (ListView) this.findViewById( R.id.lvToDoList );
-        this.registerForContextMenu( lista );
+        //this.registerForContextMenu( lista );
 
         // Lista
         this.adaptadorProducto = new ArrayAdapter<>(
@@ -162,6 +163,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
+        final ListView lista = (ListView) this.findViewById( R.id.lvToDoList );
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_main, menu);
         MenuItem searchViewItem = menu.findItem(R.id.item_barrabusqueda);
@@ -175,7 +177,12 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                return false;
+                if (TextUtils.isEmpty(newText)) {
+                    lista.clearTextFilter();
+                } else {
+                    lista.setFilterText(newText.toString());
+                }
+                return true;
             }
         });
         return super.onCreateOptionsMenu(menu);
