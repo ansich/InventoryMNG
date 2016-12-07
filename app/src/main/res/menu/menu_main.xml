@@ -11,6 +11,4 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
         android:id="@+id/item_añadirproducto" />
     <item android:title="@string/estadisticas"
         android:id="@+id/item_estadisticas" />
-    <item android:title="@string/ajustes"
-        android:id="@+id/item_ajustes" />
 </menu>

@@ -159,7 +159,24 @@ public class InventoryMNG4App extends Application {
         if(c.moveToFirst()){
             do{
                 String column1 = c.getString(0);
-                if( !co.equals(column1) ){
+                if( !co.equals(column1)  ){
+                    return true;
+                }
+            }while(c.moveToNext());
+        }
+        c.close();
+
+        return false;
+    }
+
+    public boolean getNoms(String nom){
+
+        SQLiteDatabase db = this.getDB();
+        Cursor c = db.rawQuery("SELECT nombre FROM producto ", null);
+        if(c.moveToFirst()){
+            do{
+                String column1 = c.getString(0);
+                if( !nom.equals(column1)  ){
                     return true;
                 }
             }while(c.moveToNext());

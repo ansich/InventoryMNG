@@ -48,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
         this.app = (InventoryMNG4App) this.getApplication();
 
         final ListView lista = (ListView) this.findViewById( R.id.lvToDoList );
-        //this.registerForContextMenu( lista );
 
         // Lista
         this.adaptadorProducto = new ArrayAdapter<>(
@@ -142,19 +141,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return;
-    }
-
-
-
-
-    //MENU CONTEXTUAL
-    public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo cmi)
-    {
-        if ( view.getId() == R.id.lvToDoList )
-        {
-            this.getMenuInflater().inflate( R.menu.contextual_menu, contextMenu );
-            contextMenu.setHeaderTitle( R.string.app_name );
-        }
     }
 
     //MENU DE OPCIONES CON BUSQUEDA

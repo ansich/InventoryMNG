@@ -18,6 +18,7 @@ import java.util.Date;
 
 public class CreateProduct extends AppCompatActivity {
 
+    private InventoryMNG4App app;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -131,7 +132,10 @@ public class CreateProduct extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                btGuardar.setEnabled( edNom.getText().toString().trim().length() > 0 );
+                if(  !app.getNoms( edNom.getText().toString() )  ) {
+                    btGuardar.setEnabled(false);
+                }else
+                    btGuardar.setEnabled( edNom.getText().toString().trim().length() > 0);
             }
         });
 
