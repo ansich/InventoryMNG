@@ -3,6 +3,8 @@ package com.example.david.inventorymng.View;
 import android.app.Application;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.widget.Toast;
+
 import com.example.david.inventorymng.Core.Producto;
 import com.example.david.inventorymng.Core.SqlIO;
 import java.text.ParseException;
@@ -150,18 +152,21 @@ public class InventoryMNG4App extends Application {
         return fechaDate;
     }
 
-    public void getCods(){
+    public boolean getCods(String co){
 
         SQLiteDatabase db = this.getDB();
-        Cursor c = db.rawQuery("SELECT nombre, cod FROM producto ", null);
+        Cursor c = db.rawQuery("SELECT cod FROM producto ", null);
         if(c.moveToFirst()){
             do{
                 String column1 = c.getString(0);
-                String column2 = c.getString(1);
+                if( !co.equals(column1) ){
+                    return true;
+                }
             }while(c.moveToNext());
         }
         c.close();
-        db.close();
+
+        return false;
     }
 
 }
