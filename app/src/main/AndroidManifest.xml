@@ -18,7 +18,7 @@
             </intent-filter>
         </activity>
         <activity android:name="com.example.david.inventorymng.View.CreateProduct"></activity>
-        <activity android:name="com.example.david.inventorymng.View.SimpleXYPlotActivity"></activity>
+        <activity android:name="com.example.david.inventorymng.View.Plot"></activity>
     </application>
 
 </manifest>

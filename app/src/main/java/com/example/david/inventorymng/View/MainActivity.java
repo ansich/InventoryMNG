@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
     protected static final int CODIGO_EDITAR_PRODUCTO = 100;
     protected static final int CODIGO_AÑADIR_PRODUCTO = 102;
+    protected static final int CODIGO_EST = 104;
 
 
     private ArrayList<Producto> items;
@@ -140,6 +141,11 @@ public class MainActivity extends AppCompatActivity {
             this.adaptadorProducto.notifyDataSetChanged();
         }
 
+        if (requestCode == CODIGO_EST && resultCode == Activity.RESULT_OK )
+        {
+
+        }
+
         return;
     }
 
@@ -147,28 +153,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
-        final ListView lista = (ListView) this.findViewById( R.id.lvToDoList );
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_main, menu);
-        MenuItem searchViewItem = menu.findItem(R.id.item_barrabusqueda);
-        final SearchView searchViewAndroidActionBar = (SearchView) MenuItemCompat.getActionView(searchViewItem);
-        searchViewAndroidActionBar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                searchViewAndroidActionBar.clearFocus();
-                return true;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                if (TextUtils.isEmpty(newText)) {
-                    lista.clearTextFilter();
-                } else {
-                    lista.setFilterText(newText.toString());
-                }
-                return true;
-            }
-        });
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -178,12 +164,7 @@ public class MainActivity extends AppCompatActivity {
 
         boolean toret = false;
 
-
         switch( item.getItemId() ) {
-            case R.id.item_ajustes:
-                //this.crear
-                toret = true;
-                break;
             case R.id.item_añadirproducto:
                 Intent subActividad = new Intent( MainActivity.this, CreateProduct.class );
                 subActividad.putExtra( "pos", -1 );
@@ -191,11 +172,8 @@ public class MainActivity extends AppCompatActivity {
                 toret = true;
                 break;
             case R.id.item_estadisticas:
-                //this.crear
-                toret = true;
-                break;
-            case R.id.item_barrabusqueda:
-                //this.crear
+                Intent subActividad2 = new Intent( MainActivity.this, Plot.class );
+                MainActivity.this.startActivityForResult( subActividad2, CODIGO_EST );
                 toret = true;
                 break;
         }
