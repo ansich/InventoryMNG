@@ -87,10 +87,8 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 
-
-                            MainActivity.this.items.remove( pos );
+                            app.removeItem( pos );
                             MainActivity.this.adaptadorProducto.notifyDataSetChanged();
-                            //app.removeItem( pos );
                         }
                     });
 
