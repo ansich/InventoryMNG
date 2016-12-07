@@ -106,7 +106,6 @@ public class InventoryMNG4App extends Application {
             db.endTransaction();
         }
 
-
         return;
     }
 
@@ -118,11 +117,12 @@ public class InventoryMNG4App extends Application {
         SQLiteDatabase db = this.getDB();
         Producto p = this.items.get(pos);
         int c = p.getCod();
-
+        String d = Integer.toString(c);
 
         try {
             db.beginTransaction();
-            db.execSQL( "DELETE FROM producto WHERE cod = c " );
+            db.execSQL( "DELETE FROM producto WHERE cod = ? ", new String[]{ d } );
+            this.items.remove( p );
             db.setTransactionSuccessful();
         }
         finally {
@@ -149,5 +149,21 @@ public class InventoryMNG4App extends Application {
         }
         return fechaDate;
     }
+
+    public void getCods(){
+
+        SQLiteDatabase db = this.getDB();
+        Cursor c = db.rawQuery("SELECT nombre, cod FROM producto ", null);
+        if(c.moveToFirst()){
+            do{
+                String column1 = c.getString(0);
+                String column2 = c.getString(1);
+
+            }while(c.moveToNext());
+        }
+        c.close();
+        db.close();
+    }
+
 
 }
