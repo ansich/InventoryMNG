@@ -252,10 +252,10 @@ public class CreateProduct extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                btGuardar.setEnabled( edCad_date.getText().toString().trim().length() > 0 );
 
+                btGuardar.setEnabled( edCad_date.getText().toString().trim().length() > 0 );
             }
-            
+
         });
 
     }

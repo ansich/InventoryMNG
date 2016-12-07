@@ -122,7 +122,7 @@ public class InventoryMNG4App extends Application {
 
         try {
             db.beginTransaction();
-            db.execSQL( "DELETE FROM Inventario WHERE cod = c " );
+            db.execSQL( "DELETE FROM producto WHERE cod = c " );
             db.setTransactionSuccessful();
         }
         finally {
