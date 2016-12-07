@@ -71,60 +71,42 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, final int pos, long l) {
 
+
                 if ( pos >= 0 ) {
+
 
                     final AlertDialog.Builder alerta = new AlertDialog.Builder(MainActivity.this);
 
-                    alerta.setTitle("Modificar o elminar");
-                    alerta.setMessage("¿Desea elminar o modificar el elemento?");
+
+                    alerta.setTitle("Eliminar");
+                    alerta.setMessage("¿Desea elminar el producto?");
                     alerta.setPositiveButton("Eliminar", new DialogInterface.OnClickListener() {
 
+
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
+
+
                             MainActivity.this.items.remove( pos );
                             MainActivity.this.adaptadorProducto.notifyDataSetChanged();
+                            //app.removeItem( pos );
                         }
                     });
 
-                    alerta.setNegativeButton("Modificar", new DialogInterface.OnClickListener() {
 
+                    alerta.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-
-                            final AlertDialog.Builder alerta2 = new AlertDialog.Builder(MainActivity.this);
-                            final EditText edProv = new EditText(MainActivity.this.getApplicationContext());
-                            final EditText edNum = new EditText(MainActivity.this.getApplicationContext());
-                            final EditText edDesc = new EditText(MainActivity.this.getApplicationContext());
-
-                            alerta2.setTitle("Modifcar elemento de la lista");
-                            alerta2.setMessage("Número");
-                            alerta2.setView(edNum);
-                            alerta2.setMessage("Descripcion");
-                            alerta2.setView(edDesc);
-                            alerta2.setMessage("Proveedor");
-                            alerta2.setView(edProv);
-                            alerta2.setPositiveButton("Modificar", new DialogInterface.OnClickListener() {
-
-
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                   // MainActivity.this.items.set(pos,edDesc.getText().toString());
-                                    Producto p = items.get(pos);
-                                    app.modifyProducto(pos, edDesc.getText().toString(),
-                                            Integer.parseInt(edNum.getText().toString()),
-                                            edProv.getText().toString());
-                                }
-                            });
-
-                            alerta2.setNegativeButton("Cancelar", null);
-                            alerta2.create().show();
                         }
                     });
+
+
                     alerta.create().show();
                 }
                 return false;
             }
         });
+
 
 
 
