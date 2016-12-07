@@ -61,7 +61,6 @@ public class InventoryMNG4App extends Application {
     {
         SQLiteDatabase db = this.getDB();
 
-
         try {
             db.beginTransaction();
             // Actualizar la base de datos
@@ -159,12 +158,10 @@ public class InventoryMNG4App extends Application {
             do{
                 String column1 = c.getString(0);
                 String column2 = c.getString(1);
-
             }while(c.moveToNext());
         }
         c.close();
         db.close();
     }
-
 
 }

@@ -56,17 +56,31 @@ public class CreateProduct extends AppCompatActivity {
             prov = app.getItemList().get( pos ).getProv();
             ad = app.getItemList().get( pos ).getFechaEnt();
             cd = app.getItemList().get( pos ).getFechaCad();
+
+
+            edNom.setText( nombre );
+            edNom.setKeyListener(null);
+            edAdd_date.setText( ad );
+            edAdd_date.setKeyListener(null);
+            edCad_date.setText( cd );
+            edCad_date.setKeyListener(null);
+            edCod.setText( Integer.toString(cod) );
+            edCod.setKeyListener(null);
+            edDesc.setText( desc );
+            edNum.setText( Integer.toString(numero) );
+            edProv.setText( prov );
+
+        }else {
+
+
+            edNom.setText(nombre);
+            edCod.setText(Integer.toString(cod));
+            edNum.setText(Integer.toString(numero));
+            edDesc.setText(desc);
+            edProv.setText(prov);
+            edAdd_date.setText(ad);
+            edCad_date.setText(cd);
         }
-
-
-        edNom.setText( nombre );
-        edCod.setText( Integer.toString(cod) );
-        edNum.setText( Integer.toString(numero) );
-        edDesc.setText( desc );
-        edProv.setText( prov );
-        edAdd_date.setText( ad );
-        edCad_date.setText( cd );
-
 
         btCancelar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,6 +103,7 @@ public class CreateProduct extends AppCompatActivity {
                 final String cd = edCad_date.getText().toString();
 
                 if ( pos >= 0 ) {
+
                     app.modifyProducto(pos,desc,num,prov);
                 } else {
                     app.addProducto(nombre, cod, num, desc, prov, ad, cd);
