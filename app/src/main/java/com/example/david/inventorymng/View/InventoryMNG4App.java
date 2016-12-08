@@ -89,15 +89,13 @@ public class InventoryMNG4App extends Application {
         this.leerBD();
         Producto p = this.items.get(pos);
         int c = p.getCod();
-        int nu = p.getNum();
         String d = Integer.toString(c);
-        String n = Integer.toString(nu);
 
         // Actualizar base de datos
         SQLiteDatabase db = this.getDB();
         try {
             db.beginTransaction();
-            db.execSQL( "UPDATE producto SET desc = ?, num = ? , proveedor = ? WHERE cod = ?", new String[]{ des, n, prv, d } );
+            db.execSQL( "UPDATE producto SET desc = ?, num = ? , proveedor = ? WHERE cod = ?", new String[]{ des, Integer.toString(num), prv, d } );
             db.setTransactionSuccessful();
         }
         finally {
