@@ -186,4 +186,28 @@ public class InventoryMNG4App extends Application {
         return false;
     }
 
+    public ArrayList<Double> getTopProducts() {
+
+        SQLiteDatabase db = this.getDB();
+        Cursor c = db.rawQuery("SELECT num FROM producto ORDER by num desc limit 5", new String[] {});
+        ArrayList<Double> array = new ArrayList<Double>();
+        while (c.moveToNext()) {
+            Double uname = Double.parseDouble(c.getString(0));
+            array.add(uname);
+        }
+        return array;
+    }
+
+    public ArrayList<Double> getTopCods() {
+
+        SQLiteDatabase db = this.getDB();
+        Cursor c = db.rawQuery("SELECT cod FROM producto ORDER by num desc limit 5", new String[] {});
+        ArrayList<Double> array = new ArrayList<Double>();
+        while (c.moveToNext()) {
+            Double uname = Double.parseDouble(c.getString(0));
+            array.add(uname);
+        }
+        return array;
+    }
+
 }

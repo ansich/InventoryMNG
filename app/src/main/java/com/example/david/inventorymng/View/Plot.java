@@ -6,28 +6,38 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import com.example.david.inventorymng.R;
 import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.LegendRenderer;
 import com.jjoe64.graphview.ValueDependentColor;
 import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.DataPoint;
 
+import java.util.ArrayList;
+
 public class Plot extends AppCompatActivity{
+
+    private InventoryMNG4App app;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.graph_view);
 
+        this.app = (InventoryMNG4App) this.getApplication();
+
         //Transferir datos de una actividad a otra
         Intent datosEnviados = this.getIntent();
         //final int pos = datosEnviados.getExtras().getInt( "pos" );
 
+        ArrayList<Double> topProducts = app.getTopProducts();
+        ArrayList<Double> topCods = app.getTopCods();
         GraphView graph = (GraphView) this.findViewById(R.id.graph);
         BarGraphSeries<DataPoint> series = new BarGraphSeries<>(new DataPoint[]{
-                new DataPoint(0, -1),
-                new DataPoint(1, 5),
-                new DataPoint(2, 3),
-                new DataPoint(3, 2),
-                new DataPoint(4, 6)
+                //codigo, numero
+                new DataPoint(topCods.get(0), topProducts.get(0)),
+                new DataPoint(topCods.get(1), topProducts.get(1)),
+                new DataPoint(topCods.get(2), topProducts.get(2)),
+                new DataPoint(topCods.get(3), topProducts.get(3)),
+                new DataPoint(topCods.get(4), topProducts.get(4))
         });
         graph.addSeries(series);
 
@@ -46,5 +56,11 @@ public class Plot extends AppCompatActivity{
         series.setValuesOnTopColor(Color.RED);
         //series.setValuesOnTopSize(50);
 
+        // legend
+        series.setTitle("productos con mas stock");
+        graph.getLegendRenderer().setVisible(true);
+        graph.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.TOP);
+        graph.getLegendRenderer().setFixedPosition(244,0);
+        graph.getLegendRenderer().setTextColor(Color.WHITE);
     }
 }
