@@ -3,6 +3,8 @@ package com.example.david.inventorymng.View;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v4.view.PointerIconCompat;
+import android.support.v7.widget.Toolbar;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.support.design.widget.FloatingActionButton;
@@ -17,11 +19,13 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import com.example.david.inventorymng.Core.ListViewAdapter;
 import com.example.david.inventorymng.Core.Producto;
 import com.example.david.inventorymng.R;
 
@@ -37,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ArrayList<Producto> items;
     private ArrayAdapter<Producto> adaptadorProducto;
+    private ListView lista;
     private InventoryMNG4App app;
     private CreateProduct crear;
 
@@ -44,18 +49,27 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         this.app = (InventoryMNG4App) this.getApplication();
 
-        final ListView lista = (ListView) this.findViewById( R.id.lvToDoList );
+        lista = (ListView) this.findViewById( R.id.LvToDoList );
 
         // Lista
+        this.adaptadorProducto = new ListViewAdapter(this, R.layout.item_listview, app.getItemList());
+        lista.setAdapter(this.adaptadorProducto);
+
+        /*
         this.adaptadorProducto = new ArrayAdapter<>(
                 this,
                 android.R.layout.simple_selectable_list_item,
-                app.getItemList() );
+                items );
         lista.setAdapter( this.adaptadorProducto );
+        */
 
         lista.setOnItemClickListener( new AdapterView.OnItemClickListener() {
             @Override
