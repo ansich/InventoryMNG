@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                 //Object listItem = lista.getItemAtPosition(position);
                 Intent subActividad = new Intent( MainActivity.this, CreateProduct.class );
 
-                subActividad.putExtra( "pos", 0 );
+                subActividad.putExtra( "pos", position );
                 MainActivity.this.startActivityForResult( subActividad, CODIGO_EDITAR_PRODUCTO );
             }
         });
