@@ -30,26 +30,23 @@ public class Plot extends AppCompatActivity{
 
         ArrayList<Double> topProducts = app.getTopProducts();
         ArrayList<Double> topCods = app.getTopCods();
-        GraphView graph = (GraphView) this.findViewById(R.id.graph);
-        BarGraphSeries<DataPoint> series = new BarGraphSeries<>(new DataPoint[]{ });
+//        if(topProducts.size()<5) {
+//            for (int i = topProducts.size(); i < 5; i++) {
+//                topCods.add(i, 0.0);
+//                topProducts.add(i, 0.0);
+//            }
+//        }
 
-        if(topCods.get(0)!= null) {
-            series.appendData(new DataPoint(topCods.get(0), topProducts.get(0)), true, 6);
-        }
-        if(topCods.get(1)!= null) {
-            series.appendData(new DataPoint(topCods.get(1), topProducts.get(1)), true, 6);
-        }
-        if(topCods.get(2)!= null) {
-            series.appendData(new DataPoint(topCods.get(2), topProducts.get(2)), true, 6);
-        }
-        /*
-        if(topCods.get(3)!= null) {
-            series.appendData(new DataPoint(topCods.get(3), topProducts.get(3)), true, 6);
-        }
-        if(topCods.get(4)!= null) {
-            series.appendData(new DataPoint(topCods.get(4), topProducts.get(4)), true, 6);
-        }
-        */
+
+    GraphView graph = (GraphView) this.findViewById(R.id.graph);
+    BarGraphSeries<DataPoint> series = new BarGraphSeries<>(new DataPoint[]{
+            //codigo, numero
+            new DataPoint(topCods.get(0), topProducts.get(0)),
+            new DataPoint(topCods.get(1), topProducts.get(1)),
+            new DataPoint(topCods.get(2), topProducts.get(2)),
+            new DataPoint(topCods.get(3), topProducts.get(3)),
+            new DataPoint(topCods.get(4), topProducts.get(4))
+        });
         graph.addSeries(series);
 
         // styling
