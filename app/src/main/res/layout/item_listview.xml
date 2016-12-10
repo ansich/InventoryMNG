@@ -9,8 +9,7 @@
         android:id="@+id/image_view"
         android:layout_width="0dp"
         android:layout_height="75dp"
-        android:layout_weight="17.45"
-        android:src="@mipmap/ic_producto"
+        android:layout_weight="22.93"
         android:contentDescription="@string/app_name" />
 
     <TextView
