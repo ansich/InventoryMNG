@@ -157,7 +157,7 @@ public class CreateProduct extends AppCompatActivity {
                 if(  !app.getNoms( edNom.getText().toString() )  ) {
                     btGuardar.setEnabled(false);
                 }else
-                    btGuardar.setEnabled( edNom.getText().toString().trim().length() > 0);
+                    btGuardar.setEnabled( edNom.getText().toString().trim().length() > 0 );
             }
         });
 

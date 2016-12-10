@@ -30,22 +30,22 @@ public class Plot extends AppCompatActivity{
 
         ArrayList<Double> topProducts = app.getTopProducts();
         ArrayList<Double> topCods = app.getTopCods();
-//        if(topProducts.size()<5) {
-//            for (int i = topProducts.size(); i < 5; i++) {
-//                topCods.add(i, 0.0);
-//                topProducts.add(i, 0.0);
-//            }
-//        }
+        if(topProducts.size()<5) {
+            for (int i = topProducts.size(); i < 5; i++) {
+                topCods.add(i, 0.0);
+                topProducts.add(i, 0.0);
+            }
+        }
 
 
     GraphView graph = (GraphView) this.findViewById(R.id.graph);
     BarGraphSeries<DataPoint> series = new BarGraphSeries<>(new DataPoint[]{
             //codigo, numero
-            new DataPoint(topCods.get(0), topProducts.get(0)),
-            new DataPoint(topCods.get(1), topProducts.get(1)),
-            new DataPoint(topCods.get(2), topProducts.get(2)),
-            new DataPoint(topCods.get(3), topProducts.get(3)),
-            new DataPoint(topCods.get(4), topProducts.get(4))
+            new DataPoint(1, topCods.get(0)),
+            new DataPoint(2, topCods.get(1)),
+            new DataPoint(3, topCods.get(2)),
+            new DataPoint(4, topCods.get(3)),
+            new DataPoint(5, topCods.get(4))
         });
         graph.addSeries(series);
 
@@ -57,11 +57,11 @@ public class Plot extends AppCompatActivity{
             }
         });
 
-        series.setSpacing(50);
 
         // draw values on top
         series.setDrawValuesOnTop(true);
         series.setValuesOnTopColor(Color.RED);
+        series.setSpacing(10);
         //series.setValuesOnTopSize(50);
 
         // legend
