@@ -101,7 +101,7 @@ public class Producto {
 
     @Override
     public String toString() {
-        return  "Nombre: " + nombre +
+        return  "" + nombre +
                 "\nCódigo: " + cod +
                 "\nCantidad: " + num;
                 //"Descripción = '" + desc +
