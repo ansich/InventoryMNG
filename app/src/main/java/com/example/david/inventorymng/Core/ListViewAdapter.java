@@ -61,6 +61,7 @@ public class ListViewAdapter extends ArrayAdapter<Producto> {
 
         holder.friendName.setText(getItem(position).toString());
 
+        /*
         //get first letter of each String item
         String firstLetter = String.valueOf(getItem(position).toString().charAt(0));
 
@@ -73,7 +74,7 @@ public class ListViewAdapter extends ArrayAdapter<Producto> {
                 .buildRound(firstLetter, color); // radius in px
 
         holder.imageView.setImageDrawable(drawable);
-
+        */
         return convertView;
     }
 

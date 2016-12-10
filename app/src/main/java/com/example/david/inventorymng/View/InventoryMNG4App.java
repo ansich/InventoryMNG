@@ -83,7 +83,7 @@ public class InventoryMNG4App extends Application {
     }
 
 
-    public void modifyProducto(int pos, String des, int num, String prv)
+    public void modifyProducto(int pos, String des, int num, String prv, String fechaEntrada, String fechaCad)
     {
         // Actualizar lista
         this.leerBD();
@@ -95,7 +95,7 @@ public class InventoryMNG4App extends Application {
         SQLiteDatabase db = this.getDB();
         try {
             db.beginTransaction();
-            db.execSQL( "UPDATE producto SET desc = ?, num = ? , proveedor = ? WHERE cod = ?", new String[]{ des, Integer.toString(num), prv, d } );
+            db.execSQL( "UPDATE producto SET desc = ?, num = ? , proveedor = ? , fechaEntrada = ? , fechaCad = ? WHERE cod = ?", new String[]{ des, Integer.toString(num), prv, fechaEntrada, fechaCad, d } );
             db.setTransactionSuccessful();
         }
         finally {
@@ -103,7 +103,7 @@ public class InventoryMNG4App extends Application {
         }
 
         // Modificar lista
-        Producto prod = new Producto( p.getNombre(), p.getCod(), num, des, prv, p.getFechaEnt(), p.getFechaCad() );
+        Producto prod = new Producto( p.getNombre(), p.getCod(), num, des, prv, fechaEntrada , fechaCad );
         this.items.set( pos, prod );
 
         return;

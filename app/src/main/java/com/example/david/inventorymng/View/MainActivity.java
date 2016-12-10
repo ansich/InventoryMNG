@@ -1,6 +1,7 @@
 package com.example.david.inventorymng.View;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v4.view.PointerIconCompat;
@@ -22,6 +23,7 @@ import android.view.MenuItem;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
 
@@ -188,6 +190,10 @@ public class MainActivity extends AppCompatActivity {
             case R.id.item_estadisticas:
                 Intent subActividad2 = new Intent( MainActivity.this, Plot.class );
                 MainActivity.this.startActivityForResult( subActividad2, CODIGO_EST );
+                toret = true;
+                break;
+            case R.id.item_salir:
+                System.exit(0);
                 toret = true;
                 break;
         }

@@ -2,26 +2,39 @@ package com.example.david.inventorymng.View;
 
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
 import com.example.david.inventorymng.R;
+
+import java.util.Calendar;
 import java.util.Date;
+import com.example.david.inventorymng.R;
+
+import static android.R.attr.y;
 
 public class CreateProduct extends AppCompatActivity {
 
     private InventoryMNG4App app;
+    private MainActivity main;
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -114,7 +127,7 @@ public class CreateProduct extends AppCompatActivity {
 
                 if ( pos >= 0 ) {
 
-                    app.modifyProducto(pos,desc,num,prov);
+                    app.modifyProducto(pos,desc,num,prov,ad,cd);
                 } else {
                     app.addProducto(nombre, cod, num, desc, prov, ad, cd);
                 }
@@ -248,24 +261,71 @@ public class CreateProduct extends AppCompatActivity {
         });
 
 
+        //No permite que se muestre el teclado
+        edAdd_date.setInputType(InputType.TYPE_NULL);
+        //Selecciona la fecha de entrada
+        edAdd_date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Calendar mcurrentDate = Calendar.getInstance();
+                int mYear = mcurrentDate.get(Calendar.YEAR);
+                int mMonth = mcurrentDate.get(Calendar.MONTH);
+                int mDay = mcurrentDate.get(Calendar.DAY_OF_MONTH);
+
+
+                DatePickerDialog dlg = new DatePickerDialog(CreateProduct.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayofMonth) {
+                        edAdd_date.setText(view.getDayOfMonth() + "/" + view.getMonth() + "/" + view.getYear());
+                    }
+                }, mYear, mMonth, mDay);
+
+                dlg.setTitle("Escoge la fecha de entrada");
+                dlg.show();
+            }
+        });
+
         edAdd_date.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
             }
 
             @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
 
             }
 
-
             @Override
-            public void afterTextChanged(Editable editable) {
+            public void afterTextChanged(Editable s) {
                 btGuardar.setEnabled( edAdd_date.getText().toString().trim().length() > 0 );
             }
         });
 
+        //No permite que se muestre el teclado
+        edCad_date.setInputType(InputType.TYPE_NULL);
+        //Selecciona la fecha de caducidad
+        edCad_date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Calendar mcurrentDate=Calendar.getInstance();
+                int mYear=mcurrentDate.get(Calendar.YEAR);
+                int mMonth=mcurrentDate.get(Calendar.MONTH);
+                int mDay=mcurrentDate.get(Calendar.DAY_OF_MONTH);
+
+
+                DatePickerDialog dlg2 = new DatePickerDialog(CreateProduct.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayofMonth) {
+                        edCad_date.setText(view.getDayOfMonth() + "/" + view.getMonth() + "/" + view.getYear());
+                    }
+                },mYear,mMonth,mDay);
+
+                dlg2.setTitle("Escoge la fecha de caducidad");
+                dlg2.show();}
+        });
 
         edCad_date.addTextChangedListener(new TextWatcher() {
             @Override

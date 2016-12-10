@@ -19,5 +19,6 @@
     <string name="modificarproducto">Modificar producto</string>
     <string name="ajustes">Ajustes</string>
     <string name="estadisticas">Estadísticas</string>
+    <string name="salir">Salir de la aplicación</string>
     <string name="buscar">Buscar</string>
 </resources>
