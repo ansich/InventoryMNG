@@ -14,17 +14,22 @@ import com.example.david.inventorymng.Core.Producto;
 import com.example.david.inventorymng.R;
 import com.example.david.inventorymng.View.MainActivity;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class ListViewAdapter extends ArrayAdapter<Producto> {
 
     private MainActivity activity;
     private List<Producto> friendList;
+    private List<Producto> list;
 
     public ListViewAdapter(MainActivity context, int resource, List<Producto> objects) {
         super(context, resource, objects);
         this.activity = context;
         this.friendList = objects;
+        this.list = new ArrayList<>();
+        this.list.addAll(friendList);
     }
 
     @Override
@@ -76,6 +81,22 @@ public class ListViewAdapter extends ArrayAdapter<Producto> {
         holder.imageView.setImageDrawable(drawable);
 
         return convertView;
+    }
+
+    // Filter method
+    public void filter(String charText) {
+        charText = charText.toLowerCase(Locale.getDefault());
+        friendList.clear();
+        if (charText.length() == 0) {
+            friendList.addAll(list);
+        } else {
+            for (Producto s : list) {
+                if (s.toString().toLowerCase(Locale.getDefault()).contains(charText)) {
+                    friendList.add(s);
+                }
+            }
+        }
+        notifyDataSetChanged();
     }
 
     private class ViewHolder {

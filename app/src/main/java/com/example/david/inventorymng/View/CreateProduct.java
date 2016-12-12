@@ -14,6 +14,7 @@ import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -45,6 +46,7 @@ public class CreateProduct extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setTitle("Añadir/Modificar producto");
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
@@ -348,6 +350,13 @@ public class CreateProduct extends AppCompatActivity {
 
     }
 
+    //Controla el botón de atrás de la toolbar, para que vuelva al MainActivity
+    public boolean onOptionsItemSelected(MenuItem item){
+        Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivityForResult(myIntent, 0);
+        return true;
+
+    }
 
     /**
      * Permite convertir un String en fecha (Date).

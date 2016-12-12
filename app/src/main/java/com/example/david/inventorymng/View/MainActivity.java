@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     private ListView lista;
     private InventoryMNG4App app;
     private CreateProduct crear;
+    private ListViewAdapter adapter;
 
 
     @Override
@@ -167,11 +168,34 @@ public class MainActivity extends AppCompatActivity {
 
     //MENU DE OPCIONES CON BUSQUEDA
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu( Menu menu) {
 
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_main, menu);
-        return super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate( R.menu.menu_main, menu);
+
+        MenuItem myActionMenuItem = menu.findItem( R.id.action_search);
+        final SearchView searchView = (SearchView) myActionMenuItem.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adaptadorProducto = new ListViewAdapter(MainActivity.this, R.layout.item_listview, app.getItemList());
+                lista.setAdapter(adaptadorProducto);
+                if (TextUtils.isEmpty(newText)) {
+                    //adapter.filter("");
+                    adaptadorProducto.getFilter().filter("");
+                    lista.clearTextFilter();
+                } else {
+                    adaptadorProducto.getFilter().filter(newText);
+                }
+                return true;
+            }
+        });
+
+        return true;
     }
 
 
