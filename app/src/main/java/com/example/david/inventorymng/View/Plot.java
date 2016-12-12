@@ -41,11 +41,12 @@ public class Plot extends AppCompatActivity{
     GraphView graph = (GraphView) this.findViewById(R.id.graph);
     BarGraphSeries<DataPoint> series = new BarGraphSeries<>(new DataPoint[]{
             //codigo, numero
-            new DataPoint(1, topCods.get(0)),
-            new DataPoint(2, topCods.get(1)),
-            new DataPoint(3, topCods.get(2)),
-            new DataPoint(4, topCods.get(3)),
-            new DataPoint(5, topCods.get(4))
+            
+            new DataPoint( topCods.get(0), topProducts.get(0) ),
+            new DataPoint( topCods.get(1), topProducts.get(0) ),
+            new DataPoint( topCods.get(2), topProducts.get(0) ),
+            new DataPoint( topCods.get(3), topProducts.get(0) ),
+            new DataPoint( topCods.get(4), topProducts.get(0) )
         });
         graph.addSeries(series);
 
