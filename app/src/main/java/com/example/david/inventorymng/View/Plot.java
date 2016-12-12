@@ -28,26 +28,25 @@ public class Plot extends AppCompatActivity{
         Intent datosEnviados = this.getIntent();
         //final int pos = datosEnviados.getExtras().getInt( "pos" );
 
-        ArrayList<Double> topProducts = app.getTopProducts();
-        ArrayList<Double> topCods = app.getTopCods();
-        if(topProducts.size()<5) {
-            for (int i = topProducts.size(); i < 5; i++) {
-                topCods.add(i, 0.0);
-                topProducts.add(i, 0.0);
-            }
-        }
+        //ArrayList<Double> topProducts = app.getTopProducts();
+        ArrayList<Double> topCods = app.getTopNums();
+//        if(topProducts.size()<5) {
+//            for (int i = topProducts.size(); i <= 5; i++) {
+//                topCods.add(i, 0.0);
+//                topProducts.add(i, 0.0);
+//            }
+//        }
 
 
     GraphView graph = (GraphView) this.findViewById(R.id.graph);
     BarGraphSeries<DataPoint> series = new BarGraphSeries<>(new DataPoint[]{
             //codigo, numero
-            
-            new DataPoint( topCods.get(0), topProducts.get(0) ),
-            new DataPoint( topCods.get(1), topProducts.get(0) ),
-            new DataPoint( topCods.get(2), topProducts.get(0) ),
-            new DataPoint( topCods.get(3), topProducts.get(0) ),
-            new DataPoint( topCods.get(4), topProducts.get(0) )
-        });
+            new DataPoint(0,  topCods.get(0)),
+            new DataPoint(1,  topCods.get(1)),
+            new DataPoint(2,  topCods.get(2)),
+            new DataPoint(3,  topCods.get(3)),
+            new DataPoint(4,  topCods.get(4))
+            });
         graph.addSeries(series);
 
         // styling
@@ -66,7 +65,13 @@ public class Plot extends AppCompatActivity{
         //series.setValuesOnTopSize(50);
 
         // legend
-        series.setTitle("productos con mas stock");
+        series.setTitle("0: " + app.getTopNoms().get(0) +
+                        "  /  1: " + app.getTopNoms().get(1) +
+                        "  /  2: " + app.getTopNoms().get(2) +
+                        "  /  3: " + app.getTopNoms().get(3) +
+                        "  /  4: " + app.getTopNoms().get(4) );
+
+
         graph.getLegendRenderer().setVisible(true);
         graph.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.TOP);
         graph.getLegendRenderer().setFixedPosition(244,0);

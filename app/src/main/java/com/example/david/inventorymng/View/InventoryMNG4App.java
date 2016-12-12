@@ -184,22 +184,22 @@ public class InventoryMNG4App extends Application {
         return false;
     }
 
-    public ArrayList<Double> getTopProducts() {
+    public ArrayList<String> getTopNoms() {
 
         SQLiteDatabase db = this.getDB();
-        Cursor c = db.rawQuery("SELECT num FROM producto ORDER by num desc limit 5", new String[] {});
-        ArrayList<Double> array = new ArrayList<Double>();
+        Cursor c = db.rawQuery("SELECT nombre FROM producto ORDER by num desc limit 5", new String[] {});
+        ArrayList<String> array = new ArrayList<String>();
         while (c.moveToNext()) {
-            Double uname = Double.parseDouble(c.getString(0));
+            String uname = c.getString(0);
             array.add(uname);
         }
         return array;
     }
 
-    public ArrayList<Double> getTopCods() {
+    public ArrayList<Double> getTopNums() {
 
         SQLiteDatabase db = this.getDB();
-        Cursor c = db.rawQuery("SELECT cod FROM producto ORDER by num desc limit 5", new String[] {});
+        Cursor c = db.rawQuery("SELECT num FROM producto ORDER by num desc limit 5", new String[] {});
         ArrayList<Double> array = new ArrayList<Double>();
         while (c.moveToNext()) {
             Double uname = Double.parseDouble(c.getString(0));
