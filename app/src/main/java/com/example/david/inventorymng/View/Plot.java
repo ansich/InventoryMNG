@@ -28,24 +28,24 @@ public class Plot extends AppCompatActivity{
         Intent datosEnviados = this.getIntent();
         //final int pos = datosEnviados.getExtras().getInt( "pos" );
 
-        //ArrayList<Double> topProducts = app.getTopProducts();
+        ArrayList<String> topNoms = app.getTopNoms();
         ArrayList<Double> topCods = app.getTopNums();
-//        if(topProducts.size()<5) {
-//            for (int i = topProducts.size(); i <= 5; i++) {
-//                topCods.add(i, 0.0);
-//                topProducts.add(i, 0.0);
-//            }
-//        }
+        if(topCods.size()<5) {
+            for (int i = topCods.size(); i <= 5; i++) {
+                topCods.add(i, 0.0);
+                topNoms.add(i,"");
+            }
+        }
 
 
     GraphView graph = (GraphView) this.findViewById(R.id.graph);
     BarGraphSeries<DataPoint> series = new BarGraphSeries<>(new DataPoint[]{
             //codigo, numero
-            new DataPoint(0,  topCods.get(0)),
-            new DataPoint(1,  topCods.get(1)),
-            new DataPoint(2,  topCods.get(2)),
-            new DataPoint(3,  topCods.get(3)),
-            new DataPoint(4,  topCods.get(4))
+            new DataPoint(0,  0+topCods.get(0)),
+            new DataPoint(1,  0+topCods.get(1)),
+            new DataPoint(2,  0+topCods.get(2)),
+            new DataPoint(3,  0+topCods.get(3)),
+            new DataPoint(4,  0+topCods.get(4))
             });
         graph.addSeries(series);
 
@@ -66,10 +66,10 @@ public class Plot extends AppCompatActivity{
 
         // legend
         series.setTitle("0: " + app.getTopNoms().get(0) +
-                        "  /  1: " + app.getTopNoms().get(1) +
-                        "  /  2: " + app.getTopNoms().get(2) +
-                        "  /  3: " + app.getTopNoms().get(3) +
-                        "  /  4: " + app.getTopNoms().get(4) );
+                        "  /  1: " + topNoms.get(1) +
+                        "  /  2: " + topNoms.get(2) +
+                        "  /  3: " + topNoms.get(3) +
+                        "  /  4: " + topNoms.get(4) );
 
 
         graph.getLegendRenderer().setVisible(true);
