@@ -5,9 +5,9 @@
     <string name="action_sign_in">Enviar</string>
     <string name="registro">Registrarse</string>
     <string name="nombre">Nombre</string>
-    <string name="codigo">Codigo</string>
-    <string name="numero">Numero</string>
-    <string name="desc">Descripcion</string>
+    <string name="codigo">Código</string>
+    <string name="numero">Número</string>
+    <string name="desc">Descripción</string>
     <string name="prov">Proveedor</string>
     <string name="add_date">Fecha de entrada</string>
     <string name="cad_date">Fecha de caducidad</string>

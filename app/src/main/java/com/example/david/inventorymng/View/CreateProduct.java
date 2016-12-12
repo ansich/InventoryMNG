@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
@@ -20,6 +21,8 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Toast;
+
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
 import com.example.david.inventorymng.R;
@@ -45,8 +48,8 @@ public class CreateProduct extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        getSupportActionBar().setTitle("Añadir/Modificar producto");
-        getSupportActionBar().setDisplayShowTitleEnabled(true);
+        //getSupportActionBar().setTitle("Añadir/Modificar Producto");
+        //getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
@@ -208,10 +211,18 @@ public class CreateProduct extends AppCompatActivity {
             public void afterTextChanged(Editable editable) {
                 int cod = 0;
 
-                try {
-                    cod = Integer.parseInt( edCod.getText().toString() );
-                } catch(NumberFormatException exc) {
-                    Log.w( "CreateProduct", "edCod no puede ser convertido a número" );
+                if( app.getCods(edCod.getText().toString()) == false){
+
+                    try {
+                        cod = Integer.parseInt( edCod.getText().toString() );
+
+                    } catch(NumberFormatException exc) {
+                        Log.w( "CreateProduct", "edCod no puede ser convertido a número" );
+                    }
+
+                }
+                else{
+                    Toast.makeText(app.getApplicationContext(), "Introduzca un código que no esté repetido", Toast.LENGTH_LONG).show();
                 }
 
                 btGuardar.setEnabled( cod > 0 );
