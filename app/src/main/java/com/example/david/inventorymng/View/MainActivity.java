@@ -2,8 +2,10 @@ package com.example.david.inventorymng.View;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v4.view.PointerIconCompat;
 import android.support.v7.widget.Toolbar;
 import android.os.Bundle;
@@ -32,6 +34,7 @@ import com.example.david.inventorymng.Core.Producto;
 import com.example.david.inventorymng.R;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -182,14 +185,11 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                adaptadorProducto = new ListViewAdapter(MainActivity.this, R.layout.item_listview, app.getItemList());
-                lista.setAdapter(adaptadorProducto);
                 if (TextUtils.isEmpty(newText)) {
-                    //adapter.filter("");
-                    adaptadorProducto.getFilter().filter("");
+                    adapter.filter("");
                     lista.clearTextFilter();
                 } else {
-                    adaptadorProducto.getFilter().filter(newText);
+                    adapter.filter(newText);
                 }
                 return true;
             }
@@ -226,35 +226,28 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+//public void onPause() {
+//
+//
+//   super.onPause();
+//
+//
+//   SharedPreferences prefs = this.getPreferences(Context.MODE_PRIVATE);
+//   SharedPreferences.Editor saver = prefs.edit();
+//
+//   StringBuilder builder = new StringBuilder();
+//   for (String item : this.items) {
+//       builder.append(item);
+//       builder.append(',');
+//   }
+//
+//
+//   saver.putString("items", builder.toString());
+//
+//
+//   saver.apply();
+//}
 
-    /*
-//La app pasa a segundo plano, y quizás sea elminada
-public void onPause() {
-
-
-   super.onPause();
-
-
-   SharedPreferences prefs = this.getPreferences(Context.MODE_PRIVATE);
-   SharedPreferences.Editor saver = prefs.edit();
-
-
-   saver.putStringSet("items", new HashSet<String>(this.items));
-
-
-   StringBuilder builder = new StringBuilder();
-   for (String item : this.items) {
-       builder.append(item);
-       builder.append(',');
-   }
-
-
-   saver.putString("items", builder.toString());
-
-
-   saver.apply();
-}
-*/
 
 
 /*
