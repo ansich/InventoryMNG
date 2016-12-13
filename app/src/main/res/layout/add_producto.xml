@@ -7,6 +7,8 @@
     android:fitsSystemWindows="true"
     tools:context="com.example.david.inventorymng.View.CreateProduct">
 
+    <include layout="@layout/content_scrolling" />
+
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
@@ -53,6 +55,8 @@
                             android:ems="14"
                             android:id="@+id/edNom"
                             android:hint="Nombre"
+                            android:textColorHint="@color/textBtnColor"
+                            android:textColor="@color/textBtnColor"
                             android:textSize="21sp" />
 
                     </android.support.design.widget.TextInputLayout>
@@ -78,7 +82,5 @@
         </android.support.design.widget.CollapsingToolbarLayout>
 
     </android.support.design.widget.AppBarLayout>
-
-    <include layout="@layout/content_scrolling" />
 
 </android.support.design.widget.CoordinatorLayout>
