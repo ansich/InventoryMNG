@@ -39,15 +39,19 @@ public class InventoryMNG4App extends Application {
     }
 
     public Producto getProducto(int cod){
-        SQLiteDatabase db = this.getDB();
+        Iterator it = this.items.iterator();
+        Producto a = new Producto();
 
-        Cursor cursor = db.rawQuery("SELECT * FROM producto WHERE cod = ? ", new String[]{Integer.toString(cod)});
-
-        return new Producto(cursor.getString(0), cursor.getInt(1), cursor.getInt(2), cursor.getString(3),
-                            cursor.getString(4), cursor.getString(5), cursor.getString(6));
-
+        while (it.hasNext()){
+            Producto p = (Producto) it.next();
+            if(p.getCod()==cod){
+                return p;
+            }
+        }
+        Toast.makeText(this, "No es el producto bueno", Toast.LENGTH_SHORT).show();
+        return a;
     }
-
+    
     private void leerBD()
     {
         SQLiteDatabase db = this.db.getReadableDatabase();
