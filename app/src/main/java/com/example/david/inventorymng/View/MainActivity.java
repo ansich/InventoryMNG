@@ -87,8 +87,6 @@ public class MainActivity extends AppCompatActivity {
                 //int itemposition = position;
                 Producto itemValue = (Producto) lista.getItemAtPosition(position);
 
-                int codigolista = app.getItemList().get(position).getCod();
-
                 subActividad.putExtra( "pos", itemValue.getCod() );
                 MainActivity.this.startActivityForResult( subActividad, CODIGO_EDITAR_PRODUCTO );
             }
@@ -104,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
 
                     final AlertDialog.Builder alerta = new AlertDialog.Builder(MainActivity.this);
 
+                    final Producto itemValue = (Producto) lista.getItemAtPosition(pos);
 
                     alerta.setTitle("Eliminar");
                     alerta.setMessage("¿Desea elminar el producto?");
@@ -113,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 
-                            app.removeItem( pos );
+                            app.removeItem( itemValue.getCod() );
                             MainActivity.this.adaptadorProducto.notifyDataSetChanged();
                         }
                     });
