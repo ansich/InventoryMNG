@@ -39,16 +39,13 @@ public class InventoryMNG4App extends Application {
     }
 
     public Producto getProducto(int cod){
-        Iterator it = items.iterator();
-        Producto b = new Producto();
+        SQLiteDatabase db = this.getDB();
 
-        while(it.hasNext()){
-            Producto a = (Producto) it.next();
-            if(a.getCod()==cod){
-                return a;
-            }
-        }
-        return b;
+        Cursor cursor = db.rawQuery("SELECT * FROM producto WHERE cod = ? ", new String[]{Integer.toString(cod)});
+
+        return new Producto(cursor.getString(0), cursor.getInt(1), cursor.getInt(2), cursor.getString(3),
+                            cursor.getString(4), cursor.getString(5), cursor.getString(6));
+
     }
 
     private void leerBD()
