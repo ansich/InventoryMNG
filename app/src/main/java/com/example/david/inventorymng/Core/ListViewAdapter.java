@@ -91,7 +91,7 @@ public class ListViewAdapter extends ArrayAdapter<Producto> {
             friendList.addAll(list);
         } else {
             for (Producto s : list) {
-                if (s.toString().toLowerCase(Locale.getDefault()).contains(charText)) {
+                if (charText.length() != 0 && s.toString().toLowerCase(Locale.getDefault()).contains(charText)) {
                     friendList.add(s);
                 }
             }

@@ -66,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
         lista = (ListView) this.findViewById( R.id.LvToDoList );
 
         // Lista
+        adapter = new ListViewAdapter(this, R.layout.item_listview, app.getItemList());
+
         this.adaptadorProducto = new ListViewAdapter(this, R.layout.item_listview, app.getItemList());
         lista.setAdapter(this.adaptadorProducto);
 
@@ -80,10 +82,12 @@ public class MainActivity extends AppCompatActivity {
         lista.setOnItemClickListener( new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //Object listItem = lista.getItemAtPosition(position);
                 Intent subActividad = new Intent( MainActivity.this, CreateProduct.class );
 
-                subActividad.putExtra( "pos", position );
+                //int itemposition = position;
+                Producto itemValue = (Producto) lista.getItemAtPosition(position);
+
+                subActividad.putExtra( "pos", itemValue.getCod() );
                 MainActivity.this.startActivityForResult( subActividad, CODIGO_EDITAR_PRODUCTO );
             }
         });
@@ -98,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
 
                     final AlertDialog.Builder alerta = new AlertDialog.Builder(MainActivity.this);
 
+                    final Producto itemValue = (Producto) lista.getItemAtPosition(pos);
 
                     alerta.setTitle("Eliminar");
                     alerta.setMessage("¿Desea elminar el producto?");
@@ -107,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 
-                            app.removeItem( pos );
+                            app.removeItem( itemValue.getCod() );
                             MainActivity.this.adaptadorProducto.notifyDataSetChanged();
                         }
                     });
@@ -128,20 +133,14 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
-
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent subActividad = new Intent( MainActivity.this, CreateProduct.class );
 
-
                 subActividad.putExtra( "pos", -1 );
                 MainActivity.this.startActivityForResult( subActividad, CODIGO_AÑADIR_PRODUCTO );
-
-
-                //Snackbar.make(view, "Nuevo producto", Snackbar.LENGTH_SHORT).setAction("Action", null).show();
             }
         });
     }
@@ -159,11 +158,6 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == CODIGO_EDITAR_PRODUCTO && resultCode == Activity.RESULT_OK )
         {
             this.adaptadorProducto.notifyDataSetChanged();
-        }
-
-        if (requestCode == CODIGO_EST && resultCode == Activity.RESULT_OK )
-        {
-
         }
 
         return;
@@ -186,12 +180,8 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                if (TextUtils.isEmpty(newText)) {
-                    adapter.filter("");
-                    lista.clearTextFilter();
-                } else {
-                    adapter.filter(newText);
-                }
+                adapter.filter(newText.toString().trim());
+                lista.invalidate();
                 return true;
             }
         });
@@ -226,57 +216,4 @@ public class MainActivity extends AppCompatActivity {
         return toret;
     }
 
-
-//public void onPause() {
-//
-//
-//   super.onPause();
-//
-//
-//   SharedPreferences prefs = this.getPreferences(Context.MODE_PRIVATE);
-//   SharedPreferences.Editor saver = prefs.edit();
-//
-//   StringBuilder builder = new StringBuilder();
-//   for (String item : this.items) {
-//       builder.append(item);
-//       builder.append(',');
-//   }
-//
-//
-//   saver.putString("items", builder.toString());
-//
-//
-//   saver.apply();
-//}
-
-
-
-/*
-//La app vuelve a estar en ejecución
-public void onResume(){
-   super.onResume();
-
-
-   SharedPreferences prefs = this.getPreferences(Context.MODE_PRIVATE);
-   Set<String> itemsnuevo = prefs.getStringSet("items", new HashSet<String>(this.items));
-   this.items.clear();
-   this.items.addAll(itemsnuevo);
-   this.itemsAdapter.notifyDataSetChanged();
-
-
-   String codedItems = prefs.getString("items", "");
-   String [] items = codedItems.split(" , ");
-
-
-   this.items.clear();
-   for(int i = 0; i < (items.length - 1); ++i){
-       this.items.add(items[i]);
-   }
-
-
-   this.itemsAdapter.notifyDataSetChanged();
-
-
-}
-*/
 }

@@ -11,6 +11,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 
@@ -35,6 +36,19 @@ public class InventoryMNG4App extends Application {
     {
         this.leerBD();
         return this.items;
+    }
+
+    public Producto getProducto(int cod){
+        Iterator it = items.iterator();
+        Producto b = new Producto();
+
+        while(it.hasNext()){
+            Producto a = (Producto) it.next();
+            if(a.getCod()==cod){
+                return a;
+            }
+        }
+        return b;
     }
 
     private void leerBD()
@@ -83,11 +97,11 @@ public class InventoryMNG4App extends Application {
     }
 
 
-    public void modifyProducto(int pos, String des, int num, String prv, String fechaEntrada, String fechaCad)
+    public void modifyProducto(int codigo, String des, int num, String prv, String fechaEntrada, String fechaCad)
     {
         // Actualizar lista
         this.leerBD();
-        Producto p = this.items.get(pos);
+        Producto p = getProducto(codigo);
         int c = p.getCod();
         String d = Integer.toString(c);
 
@@ -104,18 +118,18 @@ public class InventoryMNG4App extends Application {
 
         // Modificar lista
         Producto prod = new Producto( p.getNombre(), p.getCod(), num, des, prv, fechaEntrada , fechaCad );
-        this.items.set( pos, prod );
+        this.items.set( codigo, prod );
 
         return;
     }
 
 
-    public void removeItem(int pos){
+    public void removeItem(int codigo){
 
 
         //guardar la lista sin el. borrado
         SQLiteDatabase db = this.getDB();
-        Producto p = this.items.get(pos);
+        Producto p = getProducto(codigo);
         int c = p.getCod();
         String d = Integer.toString(c);
 
