@@ -82,10 +82,14 @@ public class MainActivity extends AppCompatActivity {
         lista.setOnItemClickListener( new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //Object listItem = lista.getItemAtPosition(position);
                 Intent subActividad = new Intent( MainActivity.this, CreateProduct.class );
 
-                subActividad.putExtra( "pos", position );
+                //int itemposition = position;
+                Producto itemValue = (Producto) lista.getItemAtPosition(position);
+
+                int codigolista = app.getItemList().get(position).getCod();
+
+                subActividad.putExtra( "pos", itemValue.getCod() );
                 MainActivity.this.startActivityForResult( subActividad, CODIGO_EDITAR_PRODUCTO );
             }
         });
@@ -130,20 +134,14 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
-
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent subActividad = new Intent( MainActivity.this, CreateProduct.class );
 
-
                 subActividad.putExtra( "pos", -1 );
                 MainActivity.this.startActivityForResult( subActividad, CODIGO_AÑADIR_PRODUCTO );
-
-
-                //Snackbar.make(view, "Nuevo producto", Snackbar.LENGTH_SHORT).setAction("Action", null).show();
             }
         });
     }
@@ -162,8 +160,6 @@ public class MainActivity extends AppCompatActivity {
         {
             this.adaptadorProducto.notifyDataSetChanged();
         }
-
-        if (requestCode == CODIGO_EST && resultCode == Activity.RESULT_OK ) {   }
 
         return;
     }

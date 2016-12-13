@@ -77,13 +77,13 @@ public class CreateProduct extends AppCompatActivity {
 
 
         if ( pos >= 0 ) {
-            nombre = app.getItemList().get( pos ).getNombre();
-            numero = app.getItemList().get( pos ).getNum();
-            cod = app.getItemList().get( pos ).getCod();
-            desc = app.getItemList().get( pos ).getDesc();
-            prov = app.getItemList().get( pos ).getProv();
-            ad = app.getItemList().get( pos ).getFechaEnt();
-            cd = app.getItemList().get( pos ).getFechaCad();
+            nombre = app.getProducto(pos).getNombre();
+            numero = app.getProducto(pos).getNum();
+            cod = app.getProducto(pos).getNum();
+            desc = app.getProducto(pos).getDesc();
+            prov = app.getProducto(pos).getProv();
+            ad = app.getProducto(pos).getFechaEnt();
+            cd = app.getProducto(pos).getFechaCad();
 
 
             edNom.setText( nombre );
