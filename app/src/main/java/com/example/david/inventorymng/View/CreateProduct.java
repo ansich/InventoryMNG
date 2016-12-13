@@ -160,9 +160,13 @@ public class CreateProduct extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable editable) {
                 if(  !app.getNoms( edNom.getText().toString() )  ) {
+                    Toast.makeText(app.getApplicationContext(),
+                            "Introduzca un nombre que no esté repetido", Toast.LENGTH_SHORT).show();
                     btGuardar.setEnabled(false);
                 }else
-                    btGuardar.setEnabled( edNom.getText().toString().trim().length() > 0 );
+                    btGuardar.setEnabled( edNom.getText().toString().trim().length() > 0
+                            && app.getNoms(edNom.getText().toString())
+                            && app.getCods(edCod.getText().toString()));
             }
         });
 
@@ -187,7 +191,9 @@ public class CreateProduct extends AppCompatActivity {
                     Log.w( "CreateProduct", "edNum no puede ser convertido a número" );
                 }
 
-                btGuardar.setEnabled( num > 0 );
+                btGuardar.setEnabled( num > 0
+                        && app.getNoms(edNom.getText().toString())
+                        && app.getCods(edCod.getText().toString()));
             }
         });
 
@@ -211,8 +217,6 @@ public class CreateProduct extends AppCompatActivity {
             public void afterTextChanged(Editable editable) {
                 int cod = 0;
 
-                if( app.getCods(edCod.getText().toString()) == false){
-
                     try {
                         cod = Integer.parseInt( edCod.getText().toString() );
 
@@ -220,12 +224,14 @@ public class CreateProduct extends AppCompatActivity {
                         Log.w( "CreateProduct", "edCod no puede ser convertido a número" );
                     }
 
-                }
-                else{
-                    Toast.makeText(app.getApplicationContext(), "Introduzca un código que no esté repetido", Toast.LENGTH_LONG).show();
-                }
-
-                btGuardar.setEnabled( cod > 0 );
+                if(  !app.getCods( edCod.getText().toString() )  ) {
+                    Toast.makeText(app.getApplicationContext(),
+                            "Introduzca un codigo que no esté repetido", Toast.LENGTH_SHORT).show();
+                    btGuardar.setEnabled(false);
+                }else
+                btGuardar.setEnabled( cod > 0
+                        && app.getNoms(edNom.getText().toString())
+                        && app.getCods(edCod.getText().toString()));
             }
         });
 
@@ -247,7 +253,9 @@ public class CreateProduct extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                btGuardar.setEnabled( edDesc.getText().toString().trim().length() > 0 );
+                btGuardar.setEnabled( edDesc.getText().toString().trim().length() > 0
+                        && app.getNoms(edNom.getText().toString())
+                        && app.getCods(edCod.getText().toString()));
             }
         });
 
@@ -269,7 +277,9 @@ public class CreateProduct extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                btGuardar.setEnabled( edProv.getText().toString().trim().length() > 0 );
+                btGuardar.setEnabled( edProv.getText().toString().trim().length() > 0
+                        && app.getNoms(edNom.getText().toString())
+                        && app.getCods(edCod.getText().toString()));
             }
         });
 
@@ -312,7 +322,9 @@ public class CreateProduct extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                btGuardar.setEnabled( edAdd_date.getText().toString().trim().length() > 0 );
+                btGuardar.setEnabled( edAdd_date.getText().toString().trim().length() > 0
+                        && app.getNoms(edNom.getText().toString())
+                        && app.getCods(edCod.getText().toString()));
             }
         });
 
@@ -354,7 +366,9 @@ public class CreateProduct extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable editable) {
 
-                btGuardar.setEnabled( edCad_date.getText().toString().trim().length() > 0 );
+                btGuardar.setEnabled( edCad_date.getText().toString().trim().length() > 0
+                        && app.getNoms(edNom.getText().toString())
+                        && app.getCods(edCod.getText().toString()));
             }
 
         });
