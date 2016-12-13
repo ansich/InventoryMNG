@@ -24,6 +24,7 @@
                 android:value=".MainActivity"/>
         </activity>
         <activity android:name="com.example.david.inventorymng.View.Plot"></activity>
+
     </application>
 
 </manifest>

@@ -97,6 +97,7 @@ public class CreateProduct extends AppCompatActivity {
             edDesc.setText( desc );
             edNum.setText( Integer.toString(numero) );
             edProv.setText( prov );
+            btGuardar.setEnabled(true);
 
         }else {
 
@@ -190,7 +191,6 @@ public class CreateProduct extends AppCompatActivity {
                 } catch(NumberFormatException exc) {
                     Log.w( "CreateProduct", "edNum no puede ser convertido a número" );
                 }
-
                 btGuardar.setEnabled( num > 0
                         && app.getNoms(edNom.getText().toString())
                         && app.getCods(edCod.getText().toString()));
@@ -403,4 +403,3 @@ public class CreateProduct extends AppCompatActivity {
     }
 
 }
-
