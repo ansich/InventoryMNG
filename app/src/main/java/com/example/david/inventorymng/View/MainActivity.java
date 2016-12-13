@@ -177,6 +177,7 @@ public class MainActivity extends AppCompatActivity {
 
         MenuItem myActionMenuItem = menu.findItem( R.id.action_search);
         final SearchView searchView = (SearchView) myActionMenuItem.getActionView();
+        //permite modificar el hint que el EditText muestra por defecto
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
