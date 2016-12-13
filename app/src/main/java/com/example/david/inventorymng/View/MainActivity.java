@@ -66,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
         lista = (ListView) this.findViewById( R.id.LvToDoList );
 
         // Lista
+        adapter = new ListViewAdapter(this, R.layout.item_listview, app.getItemList());
+
         this.adaptadorProducto = new ListViewAdapter(this, R.layout.item_listview, app.getItemList());
         lista.setAdapter(this.adaptadorProducto);
 
@@ -161,10 +163,7 @@ public class MainActivity extends AppCompatActivity {
             this.adaptadorProducto.notifyDataSetChanged();
         }
 
-        if (requestCode == CODIGO_EST && resultCode == Activity.RESULT_OK )
-        {
-
-        }
+        if (requestCode == CODIGO_EST && resultCode == Activity.RESULT_OK ) {   }
 
         return;
     }
@@ -185,12 +184,8 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                if (TextUtils.isEmpty(newText)) {
-                    adapter.filter("");
-                    lista.clearTextFilter();
-                } else {
-                    adapter.filter(newText);
-                }
+                adapter.filter(newText.toString().trim());
+                lista.invalidate();
                 return true;
             }
         });
