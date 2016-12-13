@@ -71,7 +71,7 @@ public class Plot extends AppCompatActivity{
                         "  /  3: " + topNoms.get(3) +
                         "  /  4: " + topNoms.get(4) );
 
-
+        series.setValuesOnTopSize(45);
         graph.getLegendRenderer().setVisible(true);
         graph.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.TOP);
         graph.getLegendRenderer().setFixedPosition(244,0);
