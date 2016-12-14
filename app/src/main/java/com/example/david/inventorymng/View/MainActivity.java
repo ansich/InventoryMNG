@@ -179,6 +179,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
+                lista.clearTextFilter();
                 adapter.filter(newText.toString().trim());
                 lista.invalidate();
                 return true;
