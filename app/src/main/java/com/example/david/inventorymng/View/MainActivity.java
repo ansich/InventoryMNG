@@ -71,18 +71,11 @@ public class MainActivity extends AppCompatActivity {
         this.adaptadorProducto = new ListViewAdapter(this, R.layout.item_listview, app.getItemList());
         lista.setAdapter(this.adaptadorProducto);
 
-        /*
-        this.adaptadorProducto = new ArrayAdapter<>(
-                this,
-                android.R.layout.simple_selectable_list_item,
-                items );
-        lista.setAdapter( this.adaptadorProducto );
-        */
 
         lista.setOnItemClickListener( new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent subActividad = new Intent( MainActivity.this, CreateProduct.class );
+                Intent subActividad = new Intent( MainActivity.this, ModifyProduct.class );
 
                 //int itemposition = position;
                 Producto itemValue = (Producto) lista.getItemAtPosition(position);

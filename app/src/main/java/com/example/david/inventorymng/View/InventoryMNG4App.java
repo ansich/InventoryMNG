@@ -51,7 +51,7 @@ public class InventoryMNG4App extends Application {
         Toast.makeText(this, "No es el producto bueno", Toast.LENGTH_SHORT).show();
         return a;
     }
-    
+
     private void leerBD()
     {
         SQLiteDatabase db = this.db.getReadableDatabase();
@@ -119,7 +119,7 @@ public class InventoryMNG4App extends Application {
 
         // Modificar lista
         Producto prod = new Producto( p.getNombre(), p.getCod(), num, des, prv, fechaEntrada , fechaCad );
-        this.items.set( codigo, prod );
+        //this.items.set( codigo, prod );
 
         return;
     }

@@ -76,40 +76,13 @@ public class CreateProduct extends AppCompatActivity {
         int cod = 1, numero = 0;
 
 
-        if ( pos >= 0 ) {
-            nombre = app.getProducto(pos).getNombre();
-            numero = app.getProducto(pos).getNum();
-            cod = app.getProducto(pos).getCod();
-            desc = app.getProducto(pos).getDesc();
-            prov = app.getProducto(pos).getProv();
-            ad = app.getProducto(pos).getFechaEnt();
-            cd = app.getProducto(pos).getFechaCad();
-
-
-            edNom.setText( nombre );
-            edNom.setKeyListener(null);
-            edAdd_date.setText( ad );
-            edAdd_date.setKeyListener(null);
-            edCad_date.setText( cd );
-            edCad_date.setKeyListener(null);
-            edCod.setText( Integer.toString(cod) );
-            edCod.setKeyListener(null);
-            edDesc.setText( desc );
-            edNum.setText( Integer.toString(numero) );
-            edProv.setText( prov );
-            btGuardar.setEnabled(true);
-
-        }else {
-
-
-            edNom.setText(nombre);
-            edCod.setText(Integer.toString(cod));
-            edNum.setText(Integer.toString(numero));
-            edDesc.setText(desc);
-            edProv.setText(prov);
-            edAdd_date.setText(ad);
-            edCad_date.setText(cd);
-        }
+        edNom.setText(nombre);
+        edCod.setText(Integer.toString(cod));
+        edNum.setText(Integer.toString(numero));
+        edDesc.setText(desc);
+        edProv.setText(prov);
+        edAdd_date.setText(ad);
+        edCad_date.setText(cd);
 
         btCancelar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -131,12 +104,7 @@ public class CreateProduct extends AppCompatActivity {
                 final String ad = edAdd_date.getText().toString();
                 final String cd = edCad_date.getText().toString();
 
-                if ( pos >= 0 ) {
-
-                    app.modifyProducto(pos,desc,num,prov,ad,cd);
-                } else {
-                    app.addProducto(nombre, cod, num, desc, prov, ad, cd);
-                }
+                app.addProducto(nombre, cod, num, desc, prov, ad, cd);
 
                 CreateProduct.this.setResult( Activity.RESULT_OK );
                 CreateProduct.this.finish();
@@ -187,7 +155,7 @@ public class CreateProduct extends AppCompatActivity {
                 int num = 0;
 
                 try {
-                    num = Integer.parseInt( edCod.getText().toString() );
+                    num = Integer.parseInt( edNum.getText().toString() );
                 } catch(NumberFormatException exc) {
                     Log.w( "CreateProduct", "edNum no puede ser convertido a número" );
                 }
@@ -322,9 +290,6 @@ public class CreateProduct extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                btGuardar.setEnabled( edAdd_date.getText().toString().trim().length() > 0
-                        && app.getNoms(edNom.getText().toString())
-                        && app.getCods(edCod.getText().toString()));
             }
         });
 
@@ -365,10 +330,6 @@ public class CreateProduct extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-
-                btGuardar.setEnabled( edCad_date.getText().toString().trim().length() > 0
-                        && app.getNoms(edNom.getText().toString())
-                        && app.getCods(edCod.getText().toString()));
             }
 
         });
@@ -381,25 +342,6 @@ public class CreateProduct extends AppCompatActivity {
         startActivityForResult(myIntent, 0);
         return true;
 
-    }
-
-    /**
-     * Permite convertir un String en fecha (Date).
-     * @param fecha Cadena de fecha dd/MM/yyyy
-     * @return Objeto Date
-     */
-    public static Date parseFecha(String fecha)
-    {
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-        Date fechaDate = null;
-        try {
-            fechaDate = formato.parse(fecha);
-        }
-        catch (ParseException ex)
-        {
-            System.out.println(ex);
-        }
-        return fechaDate;
     }
 
 }
