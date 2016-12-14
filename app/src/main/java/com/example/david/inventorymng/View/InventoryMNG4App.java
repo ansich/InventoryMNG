@@ -108,7 +108,6 @@ public class InventoryMNG4App extends Application {
         removeItem(codigo);
         addProducto(p.getNombre(), codigo, num, des, prv, fechaEntrada , fechaCad);
 
-
         return;
     }
 

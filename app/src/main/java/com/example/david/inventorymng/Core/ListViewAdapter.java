@@ -71,7 +71,7 @@ public class ListViewAdapter extends ArrayAdapter<Producto> {
         String firstLetter = String.valueOf(getItem(position).toString().charAt(0));
 
         ColorGenerator generator = ColorGenerator.MATERIAL; // or use DEFAULT
-        // generate random color
+        // color
         int color = generator.getColor(getItem(position));
         //int color = generator.getRandomColor();
 
@@ -91,7 +91,7 @@ public class ListViewAdapter extends ArrayAdapter<Producto> {
             friendList.addAll(list);
         } else {
             for (Producto s : list) {
-                if (charText.length() != 0 && s.toString().toLowerCase(Locale.getDefault()).contains(charText)) {
+                if (charText.length() != 0 && s.getNombre().toString().toLowerCase(Locale.getDefault()).contains(charText)) {
                     friendList.add(s);
                 }
             }

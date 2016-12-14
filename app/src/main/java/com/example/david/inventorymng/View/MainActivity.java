@@ -73,13 +73,11 @@ public class MainActivity extends AppCompatActivity {
         adaptadorProducto = new ListViewAdapter(this, R.layout.item_listview, app.getItemList());
         lista.setAdapter(this.adaptadorProducto);
 
-
         //lista normal
         lista.setOnItemClickListener( new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent subActividad = new Intent( MainActivity.this, ModifyProduct.class );
-
 
                 Producto itemValue = (Producto) lista.getItemAtPosition(position);
 
@@ -179,8 +177,9 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
+                adapter = new ListViewAdapter(MainActivity.this, R.layout.item_listview, app.getItemList());
                 lista.clearTextFilter();
-                adapter.filter(newText.toString().trim());
+                adapter.filter( newText.toString().trim() );
                 lista.invalidate();
                 return true;
             }

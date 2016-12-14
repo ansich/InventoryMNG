@@ -103,8 +103,8 @@ public class Producto {
     public String toString() {
         return  "" + nombre +
                 "\nCódigo: " + cod +
-                "\nCantidad: " + num;
-                //"Descripción = '" + desc +
+                "\nCantidad: " + num +
+                "\nDescripción = " + desc ;
                 //"Proveedor = " + prov +
                 //"Fecha de entrada = " + fechaEnt +
                 //"Fecha de caducidad = " + fechaCad;

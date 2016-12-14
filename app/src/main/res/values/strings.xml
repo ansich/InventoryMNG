@@ -6,7 +6,7 @@
     <string name="registro">Registrarse</string>
     <string name="nombre">Nombre</string>
     <string name="codigo">Código</string>
-    <string name="numero">Número</string>
+    <string name="numero">Cantidad</string>
     <string name="desc">Descripción</string>
     <string name="prov">Proveedor</string>
     <string name="add_date">Fecha de entrada</string>
