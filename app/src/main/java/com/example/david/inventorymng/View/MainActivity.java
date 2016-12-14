@@ -25,6 +25,7 @@ import android.view.MenuItem;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -65,19 +66,21 @@ public class MainActivity extends AppCompatActivity {
 
         lista = (ListView) this.findViewById( R.id.LvToDoList );
 
-        // Lista
+        //Adapatador para la barra de busqueda
         adapter = new ListViewAdapter(this, R.layout.item_listview, app.getItemList());
 
-        this.adaptadorProducto = new ListViewAdapter(this, R.layout.item_listview, app.getItemList());
+        // Lista
+        adaptadorProducto = new ListViewAdapter(this, R.layout.item_listview, app.getItemList());
         lista.setAdapter(this.adaptadorProducto);
 
 
+        //lista normal
         lista.setOnItemClickListener( new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent subActividad = new Intent( MainActivity.this, ModifyProduct.class );
 
-                //int itemposition = position;
+
                 Producto itemValue = (Producto) lista.getItemAtPosition(position);
 
                 subActividad.putExtra( "pos", itemValue.getCod() );
@@ -107,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
 
                             app.removeItem( itemValue.getCod() );
                             MainActivity.this.adaptadorProducto.notifyDataSetChanged();
+                            MainActivity.this.adapter.notifyDataSetChanged();
                         }
                     });
 
@@ -125,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
+        //Boton de añadir
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -145,12 +149,14 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == CODIGO_AÑADIR_PRODUCTO && resultCode == Activity.RESULT_OK )
         {
             this.adaptadorProducto.notifyDataSetChanged();
+            this.adapter.notifyDataSetChanged();
         }
 
 
         if (requestCode == CODIGO_EDITAR_PRODUCTO && resultCode == Activity.RESULT_OK )
         {
             this.adaptadorProducto.notifyDataSetChanged();
+            this.adapter.notifyDataSetChanged();
         }
 
         return;
@@ -164,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
 
         MenuItem myActionMenuItem = menu.findItem( R.id.action_search);
         final SearchView searchView = (SearchView) myActionMenuItem.getActionView();
-        //permite modificar el hint que el EditText muestra por defecto
+
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {

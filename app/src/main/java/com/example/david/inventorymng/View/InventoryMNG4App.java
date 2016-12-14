@@ -103,23 +103,10 @@ public class InventoryMNG4App extends Application {
         // Actualizar lista
         this.leerBD();
         Producto p = getProducto(codigo);
-        int c = p.getCod();
-        String d = Integer.toString(c);
-
-        // Actualizar base de datos
-        SQLiteDatabase db = this.getDB();
-        try {
-            db.beginTransaction();
-            db.execSQL( "UPDATE producto SET desc = ?, num = ? , proveedor = ? , fechaEntrada = ? , fechaCad = ? WHERE cod = ?", new String[]{ des, Integer.toString(num), prv, fechaEntrada, fechaCad, d } );
-            db.setTransactionSuccessful();
-        }
-        finally {
-            db.endTransaction();
-        }
 
         // Modificar lista
-        Producto prod = new Producto( p.getNombre(), p.getCod(), num, des, prv, fechaEntrada , fechaCad );
-        //this.items.set( codigo, prod );
+        removeItem(codigo);
+        addProducto(p.getNombre(), codigo, num, des, prv, fechaEntrada , fechaCad);
 
         return;
     }

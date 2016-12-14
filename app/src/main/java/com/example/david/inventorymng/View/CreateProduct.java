@@ -159,7 +159,7 @@ public class CreateProduct extends AppCompatActivity {
                 } catch(NumberFormatException exc) {
                     Log.w( "CreateProduct", "edNum no puede ser convertido a número" );
                 }
-                btGuardar.setEnabled( num > 0
+                btGuardar.setEnabled( num > -1
                         && app.getNoms(edNom.getText().toString())
                         && app.getCods(edCod.getText().toString()));
             }
@@ -268,7 +268,7 @@ public class CreateProduct extends AppCompatActivity {
                 DatePickerDialog dlg = new DatePickerDialog(CreateProduct.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayofMonth) {
-                        edAdd_date.setText(view.getDayOfMonth() + "/" + view.getMonth() + "/" + view.getYear());
+                        edAdd_date.setText(view.getDayOfMonth() + "/" + (view.getMonth() + 1) + "/" + view.getYear());
                     }
                 }, mYear, mMonth, mDay);
 
@@ -309,7 +309,7 @@ public class CreateProduct extends AppCompatActivity {
                 DatePickerDialog dlg2 = new DatePickerDialog(CreateProduct.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayofMonth) {
-                        edCad_date.setText(view.getDayOfMonth() + "/" + view.getMonth() + "/" + view.getYear());
+                        edCad_date.setText(view.getDayOfMonth() + "/" + (view.getMonth() + 1) + "/" + view.getYear());
                     }
                 },mYear,mMonth,mDay);
 
