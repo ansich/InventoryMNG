@@ -32,6 +32,6 @@
         android:src="@mipmap/ic_add"
         app:elevation="7dp"
         app:fabSize="normal"
-        app:backgroundTint="?attr/colorPrimaryDark"
+        app:backgroundTint="?attr/colorPrimary"
         />
 </RelativeLayout>

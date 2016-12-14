@@ -12,7 +12,7 @@
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
-        android:layout_height="180dp"
+        android:layout_height="95dp"
         android:fitsSystemWindows="true"
         android:theme="@style/AppTheme.AppBarOverlay">
 
@@ -23,7 +23,7 @@
             android:fitsSystemWindows="true"
             app:expandedTitleTextAppearance="@style/Widget.AppCompat.ActionBar.TabText"
             app:contentScrim="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            app:layout_scrollFlags="exitUntilCollapsed">
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -39,43 +39,32 @@
                     android:layout_width="match_parent"
                     android:layout_marginLeft="16dp"
                     android:orientation="vertical"
-                    android:layout_height="180dp">
+                    android:layout_height="95dp"
+                    android:weightSum="1">
 
                     <android.support.design.widget.TextInputLayout
                         android:id="@+id/lNameLayout"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/fNameLayout"
                         android:layout_marginTop="10dp"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        app:hintTextAppearance="@style/Hint"
+                        android:layout_weight="0.37">
 
                         <EditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ems="14"
                             android:id="@+id/edNom"
-                            android:hint="Nombre"
+                            android:hint="Introduzca el nombre"
                             android:textColorHint="@color/textBtnColor"
                             android:textColor="@color/textBtnColor"
-                            android:textSize="21sp" />
+                            android:textSize="22dp"
+                            />
 
                     </android.support.design.widget.TextInputLayout>
 
-                    <android.support.design.widget.TextInputLayout
-                        android:id="@+id/lNameLayout2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/fNameLayout"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp">
-
-                        <EditText
-                            android:id="@+id/edDesc"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:ems="14"
-                            android:hint="Descripción"/>
-                    </android.support.design.widget.TextInputLayout>
                 </LinearLayout>
             </android.support.v7.widget.Toolbar>
 

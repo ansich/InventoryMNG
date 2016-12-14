@@ -48,8 +48,6 @@ public class CreateProduct extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //getSupportActionBar().setTitle("Añadir/Modificar Producto");
-        //getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 

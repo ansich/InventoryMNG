@@ -22,15 +22,14 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.TextView;
+
 import android.widget.Toast;
 
 import com.example.david.inventorymng.R;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+
 import java.util.Calendar;
-import java.util.Date;
+
 
 public class ModifyProduct extends AppCompatActivity {
 
@@ -47,11 +46,11 @@ public class ModifyProduct extends AppCompatActivity {
         Toolbar toolbar2 = (Toolbar) findViewById(R.id.toolbar2);
         setSupportActionBar(toolbar2);
 
-        //getSupportActionBar().setTitle("Producto: ");
-        //getSupportActionBar().setDisplayShowTitleEnabled(true);
+        getSupportActionBar().setTitle("Modificar producto:");
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
+        final EditText edNom = (EditText) this.findViewById( R.id.edNom );
         final EditText edNum = (EditText) this.findViewById( R.id.edNum );
         final EditText edDesc = (EditText) this.findViewById( R.id.edDesc );
         final EditText edProv = (EditText) this.findViewById( R.id.edProv );
@@ -72,14 +71,15 @@ public class ModifyProduct extends AppCompatActivity {
         String nombre = "", desc="", prov="", ad="", cd="";
         int  numero = 0;
 
-
+        nombre = app.getProducto(pos).getNombre();
         numero = app.getProducto(pos).getNum();
         desc = app.getProducto(pos).getDesc();
         prov = app.getProducto(pos).getProv();
         ad = app.getProducto(pos).getFechaEnt();
         cd = app.getProducto(pos).getFechaCad();
 
-
+        edNom.setText( nombre );
+        edNom.setKeyListener(null);
         edAdd_date.setText( ad );
         edAdd_date.setKeyListener(null);
         edCad_date.setText( cd );
@@ -102,7 +102,7 @@ public class ModifyProduct extends AppCompatActivity {
         btGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //final String nombre = app.getProducto(pos).getNombre();
+
                 final int num = Integer.parseInt(edNum.getText().toString());
                 final String desc = edDesc.getText().toString();
                 final String prov = edProv.getText().toString();
@@ -121,6 +121,22 @@ public class ModifyProduct extends AppCompatActivity {
         });
         btGuardar.setEnabled( false );
 
+        edNom.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
         edNum.addTextChangedListener(new TextWatcher() {
             @Override

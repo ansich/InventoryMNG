@@ -1,41 +1,25 @@
 package com.example.david.inventorymng.View;
 
 import android.app.Activity;
-import android.app.DatePickerDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.support.v4.view.PointerIconCompat;
 import android.support.v7.widget.Toolbar;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.app.WindowDecorActionBar;
 import android.support.v7.widget.SearchView;
-import android.view.ContextMenu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
-import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.ListView;
-
 import com.example.david.inventorymng.Core.ListViewAdapter;
 import com.example.david.inventorymng.Core.Producto;
 import com.example.david.inventorymng.R;
-
 import java.util.ArrayList;
-import java.util.HashSet;
 
 public class MainActivity extends AppCompatActivity {
 

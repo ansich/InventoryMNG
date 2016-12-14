@@ -1,6 +1,5 @@
 package com.example.david.inventorymng.Core;
 
-import java.util.Date;
 
 /**
  * Created by david on 28/10/2016.
@@ -105,8 +104,5 @@ public class Producto {
                 "\nCódigo: " + cod +
                 "\nCantidad: " + num +
                 "\nDescripción = " + desc ;
-                //"Proveedor = " + prov +
-                //"Fecha de entrada = " + fechaEnt +
-                //"Fecha de caducidad = " + fechaCad;
     }
 }

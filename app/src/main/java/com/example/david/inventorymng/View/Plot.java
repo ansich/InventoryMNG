@@ -26,7 +26,6 @@ public class Plot extends AppCompatActivity{
 
         //Transferir datos de una actividad a otra
         Intent datosEnviados = this.getIntent();
-        //final int pos = datosEnviados.getExtras().getInt( "pos" );
 
         ArrayList<String> topNoms = app.getTopNoms();
         ArrayList<Double> topCods = app.getTopNums();
@@ -62,14 +61,13 @@ public class Plot extends AppCompatActivity{
         series.setDrawValuesOnTop(true);
         series.setValuesOnTopColor(Color.RED);
         series.setSpacing(10);
-        //series.setValuesOnTopSize(50);
 
         // legend
         series.setTitle("0: " + app.getTopNoms().get(0) +
-                        "  /  1: " + topNoms.get(1) +
-                        "  /  2: " + topNoms.get(2) +
-                        "  /  3: " + topNoms.get(3) +
-                        "  /  4: " + topNoms.get(4) );
+                        "  / 1: " + topNoms.get(1) +
+                        "  / 2: " + topNoms.get(2) +
+                        "  / 3: " + topNoms.get(3) +
+                        "  / 4: " + topNoms.get(4) );
 
         series.setValuesOnTopSize(45);
         graph.getLegendRenderer().setVisible(true);

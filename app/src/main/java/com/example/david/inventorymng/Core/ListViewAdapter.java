@@ -73,7 +73,6 @@ public class ListViewAdapter extends ArrayAdapter<Producto> {
         ColorGenerator generator = ColorGenerator.MATERIAL; // or use DEFAULT
         // color
         int color = generator.getColor(getItem(position));
-        //int color = generator.getRandomColor();
 
         TextDrawable drawable = TextDrawable.builder()
                 .buildRound(firstLetter, color); // radius in px
