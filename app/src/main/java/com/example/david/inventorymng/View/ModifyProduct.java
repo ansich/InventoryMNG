@@ -110,8 +110,9 @@ public class ModifyProduct extends AppCompatActivity {
                 final String cd = edCad_date.getText().toString();
 
                 app.modifyProducto(pos,desc,num,prov,ad,cd);
-                app.getItemList().notifyAll();
-
+                synchronized ( app.getItemList() ){
+                    app.getItemList().notifyAll();
+                }
                 ModifyProduct.this.setResult( Activity.RESULT_OK );
                 ModifyProduct.this.finish();
 
